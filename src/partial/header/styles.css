@@ -1,0 +1,17 @@
+@import url(constants.css);
+
+Header {
+
+	padding: var(--padding);
+	margin: 0;
+	border: 0;
+	border-bottom: var(--border-solid);
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	
+
+}

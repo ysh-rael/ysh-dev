@@ -1,0 +1,6 @@
+/* [range 4]*/
+:root { 
+	--padding: 12px;
+	--margin-default: 8px;
+	--border-solid: 1px solid #525866;
+}

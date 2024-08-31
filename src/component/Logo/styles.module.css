@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Playwrite';
+  font-style: normal;
+  font-weight: 400; /* Defina um peso específico ou um intervalo válido */
+  src: url(/f-logo.woff2) format('woff2');
+}
+
+.Logo {
+  font-family: monospace;
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.small {
+	padding: ;
+}
+
+.Primary {
+  color: whitesmoke;
+  font-family: "Playwrite", monospace, sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.Primary:after {
+  content: '.dev';
+  font-size: initial;
+  color: #ccc;
+  font-family: monospace, sans-serif;
+  font-weight: 100;
+  opacity: .8;
+  margin-right: 4px;
+}
+
+.Secundary {
+  color: lightgreen;
+  font-weight: lighter;
+}
+
+@media (prefers-color-scheme: light) { /* Use prefers-color-scheme para tema claro */
+  .Logo {
+    background: #8f8f8f; /* Defina uma cor de fundo clara para temas claros */
+  }
+}
