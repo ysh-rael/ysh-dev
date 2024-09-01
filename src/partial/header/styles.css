@@ -12,6 +12,12 @@ Header {
 	justify-content: space-between;
 	align-items: center;
 
-	
-
+	#img-tux {
+		width: 48px;
+		z-index: 2;
+		user-select: none;
+		left: calc(100% - 48px - var(--padding));
+		top: calc(var(--padding) * 2.4);
+		position: fixed;
+	}
 }

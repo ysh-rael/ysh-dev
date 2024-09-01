@@ -29,16 +29,22 @@
   font-family: monospace, sans-serif;
   font-weight: 100;
   opacity: .8;
-  margin-right: 4px;
-}
-
-.Secundary {
-  color: lightgreen;
-  font-weight: lighter;
+  margin-right: 8px;
 }
 
 @media (prefers-color-scheme: light) { /* Use prefers-color-scheme para tema claro */
-  .Logo {
-    background: #8f8f8f; /* Defina uma cor de fundo clara para temas claros */
+
+  .Primary {
+    color: #444;
+    background: #eee;
+    padding: 4px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+
   }
+
+  .Primary:after {
+    color: #888;
+  }
+
 }
