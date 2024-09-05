@@ -19,5 +19,23 @@ Header {
 		left: calc(100% - 48px - var(--padding));
 		top: calc(var(--padding) * 2.4);
 		position: fixed;
+		opacity: .6;
+	}
+
+	#img-tux:hover {
+		filter: drop-shadow(1px 1px 4px #ffffff88) ;
+		opacity: 1;
+	}
+
+	.box-options-header {
+		display: flex;
+		align-items: center;
+		justify-content: end;
+
+
+		border: 2px dashed gray; /* hsl(171deg,100%,41%)*/;
+		padding: 8px;
+		padding-right: 48px;
+		gap: 8px;
 	}
 }
