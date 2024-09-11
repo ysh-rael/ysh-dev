@@ -1,0 +1,19 @@
+#AsideMenu {
+  
+  	border-right: 1px solid #525866;
+  	position: relative; 
+
+	label[for="minime-side-menu"] {
+		position: absolute;
+		top: 24px;
+		right: 0;
+		transform: translateX(50%);
+	}
+
+
+	label:has( input#minime-side-menu:checked) {
+	  transform: translateX(50%) rotateZ(180deg);
+	}
+
+}
+

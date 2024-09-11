@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "../../lib/css/bulma@1.0.2/bulma.min.css";
 import Header from "@/partial/header";
+import AsideMenu from "@/partial/side-menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
           <Header/>
-      
+
+          <div className="container-content-app">
+          <AsideMenu/>
+            
           {children}
+          </div>
+      
           <script src="https://kit.fontawesome.com/ed21d56832.js" crossOrigin="anonymous"></script>
       </body>
     </html>
