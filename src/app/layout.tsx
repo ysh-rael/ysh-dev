@@ -20,10 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <Header/>
+          <Header/>
       
-      {children}
-      <script src="https://kit.fontawesome.com/ed21d56832.js" crossOrigin="anonymous"></script>
+          {children}
+          <script src="https://kit.fontawesome.com/ed21d56832.js" crossOrigin="anonymous"></script>
       </body>
     </html>
   );

@@ -4,3 +4,9 @@
 	--margin-default: 8px;
 	--border-solid: 1px solid #525866;
 }
+
+@media(max-width: 850px) {
+	:root {
+		--padding: 8px;
+	}
+}
