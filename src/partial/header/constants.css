@@ -2,7 +2,8 @@
 :root { 
 	--padding: 12px;
 	--margin-default: 8px;
-	--border-solid: 1px solid #525866;
+	--color-border: hsl(221, 14%, 24% );
+	--border-solid: 1px solid var(--color-border);
 }
 
 @media(max-width: 850px) {

@@ -13,19 +13,19 @@
 html,
 body {
   overflow-x: hidden;
+  width: 100%;
+  height: 100vh;
 }
 
 html {
   max-width: 100vw;
-
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 body {
-  height: 100vh;
-  width: 100%;
   max-width: 2560px;
 }
 
@@ -33,12 +33,38 @@ body {
 
 .container-content-app {
   display: grid;
-  height: 100%;
   grid-template-columns: 250px 1fr;
   transition: grid-template-columns 300ms ease;
+  height: calc(100% - 78px);
 }
 
 /* Estilo quando o checkbox estiver marcado */
 .container-content-app:has( #AsideMenu input#minime-side-menu[type="checkbox"]:checked ){
   grid-template-columns: 100px 1fr; 
+}
+
+@media(max-width: 850px) {
+
+  .container-content-app {
+    grid-template-columns: 20% 1fr;
+    height: calc(100% - 58px);
+
+  }
+  /* Estilo quando o checkbox estiver marcado */
+  .container-content-app:has( #AsideMenu input#minime-side-menu[type="checkbox"]:checked ){
+    grid-template-columns: 55px 1fr; 
+  }
+}
+
+
+@media(max-width: 600px) {
+  .container-content-app {
+    grid-template-columns: 0 1fr;
+  }
+
+  /* Estilo quando o checkbox estiver marcado */
+  .container-content-app:has( #AsideMenu span:has(input#minime-side-menu[type="checkbox"]:checked)){
+    grid-template-columns: 92px 1fr; 
+  }
+
 }

@@ -36,7 +36,7 @@ Header {
 		justify-content: end;
 
 
-		border: 2px dashed gray; /* hsl(171deg,100%,41%)*/;
+		border: 2px dashed var(--color-border); /* hsl(171deg,100%,41%)*/;
 		padding: 8px;
 		padding-right: 48px;
 		gap: 8px;

@@ -1,6 +1,9 @@
 #AsideMenu {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
   
-  	border-right: 1px solid #525866;
+  	border-right: 1px solid hsl(221, 14%, 24% );
   	position: relative; 
 
 	label[for="minime-side-menu"] {
@@ -8,6 +11,8 @@
 		top: 24px;
 		right: 0;
 		transform: translateX(50%);
+		user-select: none;
+		cursor: pointer;
 	}
 
 
@@ -15,5 +20,22 @@
 	  transform: translateX(50%) rotateZ(180deg);
 	}
 
+	#AsideMenu:not(:hover) label:has(input#minime-side-menu[type="checkbox"]:not(:checked)) {
+	  opacity: 0;
+	  transition-duration: .4s;
+	}
+
 }
 
+
+@media(max-width: 600px) {
+  #AsideMenu {
+  	label:has( input#minime-side-menu:not(:checked)) {
+	  transform: translateX(100%) rotateZ(180deg);
+	}
+
+	label:has( input#minime-side-menu:checked) {
+	  transform: translateX(50%) rotateZ(0);
+	}
+  }
+}
