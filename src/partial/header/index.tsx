@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { DragEventHandler, useEffect, useRef, useState } from "react";
 import "./styles.css";
 import Logo from '../../component/Logo';
 import language from "./language.js";
@@ -9,6 +9,8 @@ interface Params {}
 
 export default function Header(params: Params) {
   const inptSearchRef = useRef<HTMLInputElement | null>(null); // Ref para o input de busca
+  const [positionTux, setPositionTux] = useState(98)
+  const [tuxIsDragging, setTuxIsDragging] = useState(false)
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -23,10 +25,21 @@ export default function Header(params: Params) {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
+
   }, []);
 
   return (
-    <header id="Header">
+    <header 
+      id="Header" 
+      onDragOver={(event: any) => {
+        if (!tuxIsDragging || event.clientX <= 0 || event.clientX >= window.innerWidth) return;
+
+        const positionPercentage = (event.clientX / (window.innerWidth + 56)) * 100;
+        
+        setPositionTux(positionPercentage <= 0 ? 1 : positionPercentage > 100 ? 100 : positionPercentage);
+      }}
+    >
+
       <Logo showSecundary={true} width="normal" />
 
       <form action="/search/">
@@ -50,7 +63,7 @@ export default function Header(params: Params) {
         </div>
       </form>
 
-      <img id="img-tux" src="/tux-dev.gif" alt="Tux is also a software developer" />
+      <img id="img-tux" src="/tux-dev.gif" alt="Tux is also a software developer" style={{left: `calc(${positionTux}% ${positionTux >= 98 ? '- 32px' : ''})` || 'calc(100% - 56px)'}} onDragStart={() => setTuxIsDragging(true)} onDragEnd={() => setTuxIsDragging(false)} />
 
       <button className="button bttn-show-options-header" type="button">
         <i className="fa fa-plus has-text-primary"></i>

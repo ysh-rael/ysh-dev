@@ -21,8 +21,9 @@ Header {
 		z-index: 2;
 		user-select: none;
 		top: calc(var(--padding) * 2.4);
-		right: 8px;
+		left: calc(100% - 56px);
 		opacity: .6;
+		 transition: left 0.2s ease;
 	}
 
 	#img-tux:hover {
