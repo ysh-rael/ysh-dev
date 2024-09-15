@@ -8,7 +8,13 @@ const portuguese = {
 			'Metas'
 		]
 	},
-	titleAbout: 'Sobre mim',
+	aboutMe: {
+		title: 'Sobre mim',
+		list: 
+		[
+			'Perfil'
+		]	
+	}
 
 }
 

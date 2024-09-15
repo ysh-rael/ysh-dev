@@ -45,7 +45,13 @@ export default function AsideMenu() {
 
 
 			<div className="group-options-menu">
-				
+				<span id="title">{language.portuguese.aboutMe.title}</span>
+				<ul className="ul">
+					<ItemOptionMenu path={PATH.notices}>
+						<i className="fa fa-linux"></i> 
+						<span>{language.portuguese.aboutMe.list[0]}</span> 
+					</ItemOptionMenu>
+				</ul>
 			</div>
 
 		</div>
