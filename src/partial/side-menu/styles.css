@@ -1,10 +1,16 @@
 #AsideMenu {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	gap: var(--padding);
+	padding: var(--padding);
+	justify-content: space-between;
+	min-height: 100%;
+
+	border: 1px solid yellowgreen;
+	border-bottom: none;
   
-  	border-right: 1px solid hsl(221, 14%, 24% );
-  	position: relative; 
+	border-right: 1px solid hsl(221, 14%, 24% );
+	position: relative; 
 
 	label[for="minime-side-menu"] {
 		position: absolute;
@@ -20,13 +26,35 @@
 	  transform: translateX(50%) rotateZ(180deg);
 	}
 
-	#AsideMenu:not(:hover) label:has(input#minime-side-menu[type="checkbox"]:not(:checked)) {
-	  opacity: 0;
-	  transition-duration: .4s;
+	.group-options-menu {
+		width: 100%;
+		min-height: 30px;
+		overflow: hidden;
+
+		#title {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+
+		}
+
+		ul.ul {
+			padding-left: var(--padding);
+
+		}
+
 	}
 
 }
 
+#AsideMenu:not(:hover) label:has(input#minime-side-menu[type="checkbox"]:not(:checked)) {
+	  opacity: 0;
+	  transition-duration: .4s;
+}
+
+#AsideMenu:has(input#minime-side-menu[type="checkbox"]:checked) .ItemOptionMenu span, #AsideMenu:has(input#minime-side-menu[type="checkbox"]:checked) .group-options-menu > #title{
+	display: none;
+}
 
 @media(max-width: 600px) {
   #AsideMenu {

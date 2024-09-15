@@ -32,7 +32,7 @@
   margin-right: 8px;
 }
 
-@media (prefers-color-scheme: light) { /* Use prefers-color-scheme para tema claro */
+/*@media (prefers-color-scheme: light)
 
   .Primary {
     color: #444;
@@ -47,7 +47,7 @@
     color: #888;
   }
 
-}
+}*/
 
 @media(max-width: 808px) {
 

@@ -40,7 +40,7 @@ export default function Header(params: Params) {
       }}
     >
 
-      <Logo showSecundary={true} width="normal" />
+      <a href="/"><Logo showSecundary={true} width="normal" /></a>
 
       <form action="/search/">
         <div className="field is-flex">

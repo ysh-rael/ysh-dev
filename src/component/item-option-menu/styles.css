@@ -1,0 +1,19 @@
+.ItemOptionMenu {
+	li {
+		display: flex;
+		gap: 8px;
+		padding: var(--padding);
+		border-bottom: 1px dotted #00000000;
+		border-radius: 4px 4px 0 0;
+	}
+
+	li.actived {
+		border-bottom: 1px solid #d8db0fa7;
+	}
+
+	li:hover {
+		background: #fff2;
+		border-bottom: 1px solid #d8db0f;
+	}
+
+}
