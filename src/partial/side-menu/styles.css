@@ -47,6 +47,11 @@
 
 }
 
+label:has(input#minime-side-menu[type="checkbox"]) {
+	z-index: 101;
+	background: none;
+}
+
 #AsideMenu:not(:hover) label:has(input#minime-side-menu[type="checkbox"]:not(:checked)) {
 	  opacity: 0;
 	  transition-duration: .4s;
