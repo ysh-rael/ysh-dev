@@ -6,71 +6,20 @@
 import { useEffect } from 'react';
 import './styles.css'
 import { gsap } from "gsap";
+import Card01 from '@/component/card01';
+import CardContent from '@/component/card-content';
+import { dataCards } from '../../mocks/notices/data'
+import config from './config.js'
 
 export default function Notices() {
 
 
   useEffect(() => {
-    const data = [
-      {
-        place: 'Switzerland Alps',
-        title: 'SAINT',
-        title2: 'ANTONIEN',
-        description: 'Tucked away in the Switzerland Alps, Saint Antönien offers an idyllic retreat for those seeking tranquility and adventure alike. It\'s a hidden gem for backcountry skiing in winter and boasts lush trails for hiking and mountain biking during the warmer months.',
-        image: 'https://assets.codepen.io/3685267/timed-cards-1.jpg'
-      },
-      {
-        place: 'Japan Alps',
-        title: 'NANGANO',
-        title2: 'PREFECTURE',
-        description: 'Nagano Prefecture, set within the majestic Japan Alps, is a cultural treasure trove with its historic shrines and temples, particularly the famous Zenkō-ji. The region is also a hotspot for skiing and snowboarding, offering some of the country\'s best powder.',
-        image: 'https://assets.codepen.io/3685267/timed-cards-2.jpg'
-      },
-      {
-        place: 'Sahara Desert - Morocco',
-        title: 'MARRAKECH',
-        title2: 'MEROUGA',
-        description: 'The journey from the vibrant souks and palaces of Marrakech to the tranquil, starlit sands of Merzouga showcases the diverse splendor of Morocco. Camel treks and desert camps offer an unforgettable immersion into the nomadic way of life.',
-        image: 'https://assets.codepen.io/3685267/timed-cards-3.jpg'
-      },
-      {
-        place: 'Sierra Nevada - USA',
-        title: 'YOSEMITE',
-        title2: 'NATIONAL PARAK',
-        description: 'Yosemite National Park is a showcase of the American wilderness, revered for its towering granite monoliths, ancient giant sequoias, and thundering waterfalls. The park offers year-round recreational activities, from rock climbing to serene valley walks.',
-        image: 'https://assets.codepen.io/3685267/timed-cards-4.jpg'
-      },
-      {
-        place: 'Tarifa - Spain',
-        title: 'LOS LANCES',
-        title2: 'BEACH',
-        description: 'Los Lances Beach in Tarifa is a coastal paradise known for its consistent winds, making it a world-renowned spot for kitesurfing and windsurfing. The beach\'s long, sandy shores provide ample space for relaxation and sunbathing, with a vibrant atmosphere of beach bars and cafes.',
-        image: 'https://assets.codepen.io/3685267/timed-cards-5.jpg'
-      },
-      {
-        place: 'Cappadocia - Turkey',
-        title: 'Göreme',
-        title2: 'Valley',
-        description: 'Göreme Valley in Cappadocia is a historical marvel set against a unique geological backdrop, where centuries of wind and water have sculpted the landscape into whimsical formations. The valley is also famous for its open-air museums, underground cities, and the enchanting experience of hot air ballooning.',
-        image: 'https://assets.codepen.io/3685267/timed-cards-6.jpg'
-      },
-    ]
 
     const _ = id => document.getElementById(id)
 
-    const cards = data.map((i, index) => `<div class="card" id="card${index}" style="background-image:url(${i.image})"  ></div>`).join('')
+    const sildeNumbers = dataCards.map((_, index) => `<div class="item" id="slide-item-${index}" >${index + 1}</div>`).join('')
 
-    const cardContents = data.map((i, index) => `<div class="card-content" id="card-content-${index}">
-<div class="content-start"></div>
-<div class="content-place">${i.place}</div>
-<div class="content-title-1">${i.title}</div>
-<div class="content-title-2">${i.title2}</div>
-
-</div>`).join('')
-
-
-    const sildeNumbers = data.map((_, index) => `<div class="item" id="slide-item-${index}" >${index + 1}</div>`).join('')
-    if (_('demo')) _('demo').innerHTML = cards + cardContents
     if (_('slide-numbers')) _('slide-numbers').innerHTML = sildeNumbers
 
     const range = (n) =>
@@ -118,13 +67,7 @@ export default function Notices() {
       offsetTop = height - 520;
       offsetLeft = width - 830;
 
-      gsap.set("#pagination", {
-        top: offsetTop + cardHeight + 8,
-        left: offsetLeft,
-        y: 0,
-        opacity: 0,
-        zIndex: 6,
-      });
+      gsap.set("#pagination", config.gsap.pagination);
       gsap.set("nav", { y: 0, opacity: 0 });
 
       gsap.set(getCard(active), {
@@ -209,13 +152,13 @@ export default function Notices() {
         const detailsInactive = detailsEven ? "#details-odd" : "#details-even";
 
         document.querySelector(`${detailsActive} .place-box .text`).textContent =
-          data[order[0]].place;
+          dataCards[order[0]].place;
         document.querySelector(`${detailsActive} .title-1`).textContent =
-          data[order[0]].title;
+          dataCards[order[0]].title;
         document.querySelector(`${detailsActive} .title-2`).textContent =
-          data[order[0]].title2;
+          dataCards[order[0]].title2;
         document.querySelector(`${detailsActive} .desc`).textContent =
-          data[order[0]].description;
+          dataCards[order[0]].description;
 
         gsap.set(detailsActive, { zIndex: 2.2 });
         gsap.to(detailsActive, { opacity: 1, delay: 0.4, ease });
@@ -315,7 +258,7 @@ export default function Notices() {
         rest.forEach((i, index) => {
           if (i !== prv) {
             const xNew = offsetLeft + index * (cardWidth + gap);
-            gsap.set(getCard(i), { zIndex: 30 });
+            gsap.set(getCard(i), { zIndex: 3 });
             gsap.to(getCard(i), {
               x: xNew,
               y: offsetTop,
@@ -357,7 +300,7 @@ export default function Notices() {
     }
 
     async function loadImages() {
-      const promises = data.map(({ image }) => loadImage(image));
+      const promises = dataCards.map(({ image }) => loadImage(image));
       return Promise.all(promises);
     }
 
@@ -379,7 +322,10 @@ export default function Notices() {
 
 
       <div id='container-demo'>
-        <div id="demo"></div>
+        <div id="demo">
+        {dataCards.map((i, index) => <Card01 key={index} image={{url: i.image}} index={index}/>)} 
+        {dataCards.map((i, index) => <CardContent key={i} image={i} index={index}/>)}
+        </div>
 
         <div className="details" id="details-even">
           <div className="place-box">

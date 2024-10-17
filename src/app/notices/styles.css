@@ -8,28 +8,11 @@
   overflow: hidden;
   font-family: "Inter", sans-serif;
 
-  .card {
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-position: center;
-    background-size: cover;
-    box-shadow: 6px 6px 10px 2px rgba(0, 0, 0, 0.6);
-  }
-
   #btn {
     position: absolute;
     top: 690px;
     left: 16px;
     z-index: 99;
-  }
-
-  .card-content {
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #FFFFFFDD;
-    padding-left: 16px;
   }
 
   .content-place {
