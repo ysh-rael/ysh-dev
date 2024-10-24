@@ -6,9 +6,10 @@ import language from "./language.js";
 import { usePathname } from "next/navigation";
 import ItemOptionMenu from "@/component/item-option-menu";
 const PATH = {
-	notices: '/notices',
+	home: '/',
 	projects: '/projects',
 	goals: '/goals',
+	profile: '/profile',
 }
 
 
@@ -25,7 +26,7 @@ export default function AsideMenu() {
 			<div className="group-options-menu">
 			<span id="title">{language.portuguese.dashboard.title}</span>
 			<ul className="ul">
-				<ItemOptionMenu path={PATH.notices}>
+				<ItemOptionMenu path={PATH.home}>
 					<i className="fa-solid fa-mug-hot"></i> 
 					<span>{language.portuguese.dashboard.list[0]}</span> 
 				</ItemOptionMenu>
@@ -47,7 +48,7 @@ export default function AsideMenu() {
 			<div className="group-options-menu">
 				<span id="title">{language.portuguese.aboutMe.title}</span>
 				<ul className="ul">
-					<ItemOptionMenu path={PATH.notices}>
+					<ItemOptionMenu path={PATH.profile}>
 						<i className="fa fa-linux"></i> 
 						<span>{language.portuguese.aboutMe.list[0]}</span> 
 					</ItemOptionMenu>

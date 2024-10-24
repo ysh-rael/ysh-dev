@@ -1,0 +1,25 @@
+.ChevronScrool {
+	position: absolute;
+	left: 50%;
+	z-index: 3;
+	font-size: 1.8rem;
+	top: 92.5%; /* Posição inicial */
+	transform: translate(-50%);
+	animation: scrool-to-down 1198ms infinite;
+	text-shadow: 0 -1.2rem #fff4;
+}
+
+@keyframes scrool-to-down {
+	0% {
+		opacity: 0.2;
+		transform: translate(-50%) scale(1);
+		top: 92.5%;
+		text-shadow: 0 -1.2rem 0 #fff8;
+	}
+	100% {
+		opacity: 1;
+		transform: translate(-50%) scale(0.96);
+		top: 96.5%;
+		text-shadow: 0 -.9rem #fff8;
+	}
+}

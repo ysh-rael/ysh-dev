@@ -29,11 +29,17 @@ body {
   max-width: 2560px;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 /*LAYOUT*/
+/*CÓDIGO COMENTADO É REFERENTE AO MENU LATERAL.*/
 
 .container-content-app {
   display: grid;
-  grid-template-columns: 250px 1fr;
+/*  grid-template-columns: 250px 1fr;*/
+  grid-template-columns: 1fr;
   transition: grid-template-columns 300ms ease;
   height: calc(100% - 78px);
   max-height: calc(100% - 78px) !important;
@@ -44,36 +50,35 @@ body {
   }
 
 /* Estilo quando o checkbox estiver marcado */
-.container-content-app:has( #AsideMenu input#minime-side-menu[type="checkbox"]:checked ){
+/*.container-content-app:has( #AsideMenu input#minime-side-menu[type="checkbox"]:checked ){
   grid-template-columns: 100px 1fr; 
-}
+}*/
 
 @media(max-width: 850px) {
 
   .container-content-app {
-    grid-template-columns: 20% 1fr;
+/*    grid-template-columns: 20% 1fr;*/
     max-height: calc(100% - 58px) !important;
     height: calc(100% - 58px);
   }
   /* Estilo quando o checkbox estiver marcado */
-  .container-content-app:has( #AsideMenu input#minime-side-menu[type="checkbox"]:checked ){
+/*  .container-content-app:has( #AsideMenu input#minime-side-menu[type="checkbox"]:checked ){
     grid-template-columns: 55px 1fr; 
-  }
+  }*/
 
   .container-content-app > * {
      max-height: calc(100% - 58px) !important;
   }
 }
 
-
-@media(max-width: 600px) {
-  .container-content-app {
+/*@media(max-width: 600px) {*/
+ /* .container-content-app {
     grid-template-columns: 0 1fr;
-  }
+  }*/
 
   /* Estilo quando o checkbox estiver marcado */
-  .container-content-app:has( #AsideMenu span:has(input#minime-side-menu[type="checkbox"]:checked)){
+  /*.container-content-app:has( #AsideMenu span:has(input#minime-side-menu[type="checkbox"]:checked)){
     grid-template-columns: 92px 1fr; 
-  }
+  }*/
 
-}
+/*}*/

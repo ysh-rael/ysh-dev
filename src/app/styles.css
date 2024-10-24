@@ -7,6 +7,8 @@
   position: relative;
   overflow: hidden;
   font-family: "Inter", sans-serif;
+  width: 100%;
+  height: calc(100vh - 79px);
 
   #btn {
     position: absolute;
@@ -130,19 +132,29 @@
 
   .pagination {
     position: absolute;
-    left: 0px;
-    top: 0px;
+    right: 24px !important;
+    left: 64% !important;
+    bottom: 1vh;
+    top: 90% !important;
     display: inline-flex;
   }
 
   .pagination>.arrow {
-    z-index: 60;
+    z-index: 6;
     width: 50px;
     height: 50px;
     border-radius: 999px;
     border: 2px solid #ffffff55;
     display: grid;
     place-items: center;
+  }
+
+  .pagination>.arrow:hover {
+    background-color: #fff6;
+  }
+
+  .pagination>.arrow:active {
+    background-color: unset;
   }
 
   .pagination>.arrow:nth-child(2) {

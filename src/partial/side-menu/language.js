@@ -3,7 +3,7 @@ const portuguese = {
 		title: 'Painel Inicial',
 		list: 
 		[
-			'Novidades',
+			'Inicio',
 			'Projetos',
 			'Metas'
 		]
