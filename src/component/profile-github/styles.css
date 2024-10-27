@@ -1,0 +1,48 @@
+.container-about-me {
+    display: flex;
+}
+
+.box-most-languages {
+    border-left: 1px solid yellowgreen;
+    padding: 24px;
+}
+
+.ysh {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    padding: 24px;
+    padding-right: 12px;
+}
+
+.ysh img {
+    width: 280px;
+    border-radius: 50%;
+}
+
+
+@media (max-width: 832px) {
+    .container-about-me {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .box-most-languages {
+        border-left: none;
+
+    }
+
+    .ysh {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+        height: 100%;
+
+        padding: 24px;
+        padding-right: 12px;
+    }
+
+
+}

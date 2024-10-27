@@ -40,7 +40,7 @@ const config = {
             width: cardWidth,
             height: cardHeight,
             zIndex: 3,
-            borderRadius: 0,
+            borderRadius: 4,
         }),
         cardContentI: index => ({
             x: offsetLeft + 400 + index * (cardWidth + gap),
