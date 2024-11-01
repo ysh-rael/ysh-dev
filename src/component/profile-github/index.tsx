@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.css'
 
 interface IconProps {
@@ -29,21 +29,38 @@ const IconSection: React.FC<IconSectionProps> = ({ title, icons }) => (
     </section>
 );
 
+function formatHour(date: Date): string {
+    return date.toLocaleTimeString().slice(0, 5)
+}
+
 export default function ProfileGithub() {
+
+    const [currentDate, setCurrentDate] = useState(formatHour(new Date()))
+
+    useEffect(() => {
+        var updateCurrentHour = setInterval(() => {
+            setCurrentDate(formatHour(new Date()))
+        }, 1000)
+
+
+        return () => clearInterval(updateCurrentHour)
+    })
     return (
         <div className="container-about-me">
             <div className='ysh'>
                 <img src="https://avatars.githubusercontent.com/u/79410863?v=4" alt="me" /> <br />
                 <span className='subtitle'>ysh-rael · he/him</span>
-                <p className='text'>
+                {/* <p className='text'>
                     🐧 Software developer with emphasis on web development
+                </p> */}
+                <p className='text'>
+                    Software developer at Bra Solucoes
                 </p>
                 <ul className='ul'>
-                    <li className='li'>Belém PA, Brasil.</li>
-                    <li className='li'>{new Date().toLocaleTimeString().slice(0, 5)} (UTC -03:00)</li>
-                    <li className='li'>Ysp.rael@gmail.com</li>
-                    <li className='li'>https://yshrael.vercel.app/</li>
-                    <li className='li'>in/yshrael-pimentel-76502820b</li>
+                    <li className='li'>Belém PA, Brasil | {currentDate} (UTC -03:00)</li>
+                    <li className='li'><a href="mailto:Ysp.rael@gmail.com">Ysp.rael@gmail.com</a></li>
+                    <li className='li'><a href="https://yshrael.vercel.app/">Yshrael vercel app</a></li>
+                    <li className='li'><a href="https://linkedin/in/yshrael-pimentel">in/yshrael-pimentel</a></li>
                 </ul>
             </div>
             <div className='box-most-languages'>

@@ -1,0 +1,14 @@
+.Contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 600px;
+
+
+}
+
+.container-media-social {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+
+}
