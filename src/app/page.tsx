@@ -31,7 +31,7 @@ export default function Home() {
       <div className="conteiner-contact-me">
         <Contact />
 
-        <div className="container-media-social">
+        <div className="container-social-media">
           <button className="button is-warning is-light" title="Download Curriculum">
             <i className="fa fa-download has-text-warning"></i>
           </button>
