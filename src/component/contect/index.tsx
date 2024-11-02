@@ -1,6 +1,25 @@
+import { useState } from 'react'
 import './styles.css'
 
+
+interface typeIcons {
+    left: string,
+    right: string,
+    isValid: -1|0|1,
+}
+
+function returnClassNameStyles(objectIcons: typeIcons, hidden = false) {
+    if (typeof objectIcons !== 'object') return''
+    return objectIcons.isValid == -1 ? hidden ? 'is-hidden' : '' : objectIcons.isValid ? 'is-danger' : 'is-success'
+}
+
 export default function Contact() {
+    const initialIconsName: typeIcons = { left: 'fa-user', right: '', isValid: -1 }
+    const initialIconsEmail: typeIcons = { left: 'fa-envelope', right: '', isValid: -1 }
+
+    const [iconsName, setIconsName] = useState(initialIconsName)
+    const [iconsEmail, setIconsEmail] = useState(initialIconsEmail)
+
     return (
         <div className='Contact'>
             <div className="public">
@@ -9,31 +28,31 @@ export default function Contact() {
             <div className="form">
 
                 <div className="field">
-                    <label className="label">Seu nome</label>
+                    <label className="label">Name</label>
                     <div className="control has-icons-left has-icons-right">
-                        <input className="input is-success" type="text" placeholder="Text input" value="bulma" />
+                        <input className={`input ${returnClassNameStyles(iconsName)}`} type="text" placeholder="Your name"/>
                         <span className="icon is-small is-left">
-                            <i className="fas fa-user"></i>
+                            <i className={`fas ${iconsName.left}`}></i>
                         </span>
                         <span className="icon is-small is-right">
-                            <i className="fas fa-check"></i>
+                            <i className={`fas ${iconsName.right}`}></i>
                         </span>
                     </div>
-                    <p className="help is-success">This username is available</p>
+                    <p className={`help ${returnClassNameStyles(iconsName, true)}`}>Thias username is available</p>
                 </div>
 
                 <div className="field">
-                    <label className="label">Email</label>
+                    <label className="label">E-mail</label>
                     <div className="control has-icons-left has-icons-right">
-                        <input className="input is-danger" type="email" placeholder="Email input" value="hello@" />
+                        <input className={`input ${returnClassNameStyles(iconsName)}`} type="email" placeholder="Your e-mail" />
                         <span className="icon is-small is-left">
-                            <i className="fas fa-envelope"></i>
+                            <i className={`fas ${iconsEmail.left}`}></i>
                         </span>
                         <span className="icon is-small is-right">
-                            <i className="fas fa-exclamation-triangle"></i>
+                            <i className={`fas ${iconsEmail.right}`}></i>
                         </span>
                     </div>
-                    <p className="help is-danger">This email is invalid</p>
+                    <p className={`help ${returnClassNameStyles(iconsName, true)}`}>This email is invalid</p>
                 </div>
 
                 <div className="field">

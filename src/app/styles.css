@@ -14,6 +14,21 @@
 footer {
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.container-social-media {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+
+}
+
+@media (max-width: 640px) {
+  .container-social-media .label-btton { display: none;}
 }
 
 .Notices {

@@ -70,8 +70,8 @@ export default function Header(params: Params) {
       </button>
 
        <div className="box-options-header">
-        <button className="button is-warning is-light" title="Download Curriculum">
-          <i className="fa fa-download has-text-warning"></i>
+        <button className="button is-success is-light" title="Download Curriculum">
+          <i className="fa fa-download has-text-success"></i>
         </button>
 
         <button className="button is-light" title="Github">
