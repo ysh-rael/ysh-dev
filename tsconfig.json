@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/component/highlight-show-case/hooks/use-highlight-show-case/methods/load-images.js", "src/component/highlight-show-case/hooks/use-highlight-show-case/methods/load-image.js"],
   "exclude": ["node_modules"]
 }
