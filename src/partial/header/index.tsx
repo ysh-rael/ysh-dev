@@ -69,7 +69,7 @@ export default function Header(params: Params) {
         <i className="fa fa-plus has-text-primary"></i>
       </button>
 
-       <div className="box-options-header">
+      <div className="box-options-header box-social-media">
         <button className="button is-success is-light" title="Download Curriculum">
           <i className="fa fa-download has-text-success"></i>
         </button>

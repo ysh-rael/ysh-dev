@@ -28,7 +28,36 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .container-social-media .label-btton { display: none;}
+  .container-social-media .label-btton {
+    display: none;
+  }
+
+    .container-social-media button:hover::after {
+      position: absolute;
+      right: 25%;
+      top: calc(100% + 12px);
+      background: whitesmoke;
+      padding: 4px;
+      border-radius: 4px;
+      box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.445);
+      animation: showLabel 1400ms;
+    }
+  
+    .container-social-media button:nth-child(1):hover::after {
+      content: 'Downalod Curriculunm';
+    }
+  
+    .container-social-media button:nth-child(2):hover::after {
+      content: 'Github';
+    }
+  
+    .container-social-media button:nth-child(3):hover::after {
+      content: 'Linkedin';
+    }
+  
+    .container-social-media button:nth-child(4):hover::after {
+      content: 'Enviar e-mail';
+    }
 }
 
 .Notices {
@@ -268,6 +297,44 @@ footer {
         width: 280px;
       }
     }
+  }
+
+}
+
+.box-social-media button:hover::after {
+  position: absolute;
+  right: 25%;
+  top: calc(100% + 12px);
+  background: whitesmoke;
+  padding: 4px;
+  border-radius: 4px;
+  box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.445);
+  animation: showLabel 1400ms;
+}
+
+.box-social-media button:nth-child(1):hover::after {
+  content: 'Downalod Curriculunm';
+}
+
+.box-social-media button:nth-child(2):hover::after {
+  content: 'Github';
+}
+
+.box-social-media button:nth-child(3):hover::after {
+  content: 'Linkedin';
+}
+
+.box-social-media button:nth-child(4):hover::after {
+  content: 'Enviar e-mail';
+}
+
+@keyframes showLabel {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 
 }
