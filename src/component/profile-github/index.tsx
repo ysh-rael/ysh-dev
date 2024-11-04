@@ -65,7 +65,6 @@ export default function ProfileGithub() {
             </div>
             <div className='box-most-languages'>
                 {/* Imagens principais */}
-                <h1>Olá, eu sou o Yshrael!</h1>
                 <img
                     style={{ float: 'right' }}
                     height="200"
@@ -150,6 +149,8 @@ export default function ProfileGithub() {
                         { name: 'Webpack', src: 'https://github.com/ysh-rael/Ysh-rael/assets/79410863/55565ec7-be65-447b-bb1d-a348c1fa7da0' },
                     ]}
                 />
+                <img src="/snake.svg" alt="snake.svg" className='animation-snake-commits'/>
+
             </div>
         </div>
     );

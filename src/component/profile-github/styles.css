@@ -21,6 +21,10 @@
     border-radius: 50%;
 }
 
+.animation-snake-commits {
+    max-width: 600px;
+}
+
 
 @media (max-width: 832px) {
     .container-about-me {
