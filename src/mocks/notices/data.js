@@ -1,6 +1,6 @@
 const dataCards = [
   {
-    place: 'Multi Threads node.js',
+    place: 'Multi Threads Node.js',
     title: 'Worker Threads',
     title2: 'Node.js',
     description: 'Exemplifica a otimização do tempo de execucao e recursos utilizando múltiplas threads com node.js',

@@ -70,7 +70,7 @@ function init() {
         onComplete: () => {
             setTimeout(() => {
                 this.loop();
-            }, 500);
+            }, 4000);
         },
     });
 
