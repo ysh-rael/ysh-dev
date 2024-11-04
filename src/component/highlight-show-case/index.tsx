@@ -31,7 +31,7 @@ export default function HighlightShowcase() {
 
             <div className="details" id="details-even">
                 <div className="place-box">
-                    <div className="text">Switzerland Alps</div>
+                    <div className="text">{dataCards[0].place}</div>
                 </div>
                 <div className="title-box-1"><div className="title-1">{dataCards[0].title}</div></div>
                 <div className="title-box-2"><div className="title-2">{dataCards[0].title2}</div></div>
@@ -48,7 +48,7 @@ export default function HighlightShowcase() {
 
             <div className="details" id="details-odd">
                 <div className="place-box">
-                    <div className="text">Switzerland Alps</div>
+                    <div className="text">{dataCards[0].place}</div>
                 </div>
                 <div className="title-box-1"><div className="title-1">{dataCards[0].title} </div></div>
                 <div className="title-box-2"><div className="title-2">{dataCards[0].title2}</div></div>
