@@ -1,10 +1,10 @@
 const dataCards = [
   {
-    place: 'Multi Threads Node.js',
-    title: 'Worker Threads',
-    title2: 'Node.js',
-    description: 'Exemplifica a otimização do tempo de execucao e recursos utilizando múltiplas threads com node.js',
-    image: '/tumb-work-threads-node.webp'
+    place: 'Fingerprint Browser',
+    title: 'Browser Hash',
+    title2: 'Identificacao de maquina',
+    description: 'Yosemite National Park is a showcase of the American wilderness, revered for its towering granite monoliths, ancient giant sequoias, and thundering waterfalls. The park offers year-round recreational activities, from rock climbing to serene valley walks.',
+    image: '/browser-hash.webp'
   },
   {
     place: 'Machine Learning',
@@ -13,13 +13,12 @@ const dataCards = [
     description: 'Cria modelos para treinamento de redes neurais que utilizem o TensorFlow',
     image: '/tumb-mcml-alter.webp',
   },
-  
   {
-    place: 'Sierra Nevada - USA',
-    title: 'YOSEMITE',
-    title2: 'NATIONAL PARAK',
-    description: 'Yosemite National Park is a showcase of the American wilderness, revered for its towering granite monoliths, ancient giant sequoias, and thundering waterfalls. The park offers year-round recreational activities, from rock climbing to serene valley walks.',
-    image: 'https://assets.codepen.io/3685267/timed-cards-4.jpg'
+    place: 'Multi Threads Node.js',
+    title: 'Worker Threads',
+    title2: 'Node.js',
+    description: 'Exemplifica a otimização do tempo de execucao e recursos utilizando múltiplas threads com node.js',
+    image: '/tumb-work-threads-node.webp'
   },
   {
     place: 'Tarifa - Spain',
