@@ -1,5 +1,12 @@
 const dataCards = [
   {
+    place: 'Tarifa - Spain',
+    title: 'LPR-br',
+    title2: 'Reconhecimento de placa',
+    description: 'Los Lances Beach in Tarifa is a coastal paradise known for its consistent winds, making it a world-renowned spot for kitesurfing and windsurfing. The beach\'s long, sandy shores provide ample space for relaxation and sunbathing, with a vibrant atmosphere of beach bars and cafes.',
+    image: '/LPR-br.webp'
+  },
+  {
     place: 'Fingerprint Browser',
     title: 'Browser Hash',
     title2: 'Identificacao de maquina',
@@ -19,13 +26,6 @@ const dataCards = [
     title2: 'Node.js',
     description: 'Exemplifica a otimização do tempo de execucao e recursos utilizando múltiplas threads com node.js',
     image: '/tumb-work-threads-node.webp'
-  },
-  {
-    place: 'Tarifa - Spain',
-    title: 'LOS LANCES',
-    title2: 'BEACH',
-    description: 'Los Lances Beach in Tarifa is a coastal paradise known for its consistent winds, making it a world-renowned spot for kitesurfing and windsurfing. The beach\'s long, sandy shores provide ample space for relaxation and sunbathing, with a vibrant atmosphere of beach bars and cafes.',
-    image: 'https://assets.codepen.io/3685267/timed-cards-5.jpg'
   },
   {
     place: 'Cappadocia - Turkey',
