@@ -94,10 +94,10 @@ export default function ProfileGithub() {
                     <h2 className='subtitle'>Linguagens de programação:</h2>
                     <img src="https://github.com/ysh-rael/Ysh-rael/assets/79410863/a3ebd705-1b27-4a7b-be28-71e8a046e01f" alt="JavaScript" /> &nbsp;
                     <img src="https://github.com/ysh-rael/Ysh-rael/assets/79410863/95a22a16-51e8-4c47-b5f0-4f19120ac372" alt="TypeScript" /> &nbsp;
+                    <img src="https://github.com/user-attachments/assets/57081892-6001-4778-9f38-6fb64479a009" alt="Go" />
                     <img src="https://github.com/ysh-rael/Ysh-rael/assets/79410863/95592570-8eb0-41f8-87f6-144edbf3bd7a" alt="C Sharp" /> &nbsp;
                     <img src="https://github.com/ysh-rael/Ysh-rael/assets/79410863/beab89db-9957-4948-ac69-65721e83c263" alt="C++" /> &nbsp;
                     <img src="https://github.com/ysh-rael/Ysh-rael/assets/79410863/eff34fdf-8bf8-4738-9e13-2b5dc6d65c2a" alt="Python" /> &nbsp;
-                    <img src="https://github.com/user-attachments/assets/57081892-6001-4778-9f38-6fb64479a009" alt="Go" />
                 </div>
                 <IconSection
                     title="Bibliotecas"

@@ -1,48 +1,34 @@
 const dataCards = [
   {
-    place: 'Tarifa - Spain',
+    place: 'LPR',
     title: 'LPR-br',
-    title2: 'Reconhecimento de placa',
-    description: 'Los Lances Beach in Tarifa is a coastal paradise known for its consistent winds, making it a world-renowned spot for kitesurfing and windsurfing. The beach\'s long, sandy shores provide ample space for relaxation and sunbathing, with a vibrant atmosphere of beach bars and cafes.',
-    image: '/LPR-br.webp'
+    title2: 'Placa Brasil/Mercosul',
+    description: 'Solução para reconhecimento automático de placas veiculares, voltadas para veiculos homologados no Brasil. Ideal para sistemas de monitoramento e controle de acesso.',
+    image: '/LPR-br.webp',
   },
   {
     place: 'Fingerprint Browser',
     title: 'Browser Hash',
-    title2: 'Identificacao de maquina',
-    description: 'Yosemite National Park is a showcase of the American wilderness, revered for its towering granite monoliths, ancient giant sequoias, and thundering waterfalls. The park offers year-round recreational activities, from rock climbing to serene valley walks.',
-    image: '/browser-hash.webp'
+    title2: 'ID de máquina',
+    description: 'Ferramenta para identificação única de dispositivos com base em suas características específicas, utilizando fingerprinting na web.',
+    image: '/browser-hash.webp',
   },
   {
     place: 'Machine Learning',
     title: 'MCML',
-    title2: 'Modelos pra IA',
-    description: 'Cria modelos para treinamento de redes neurais que utilizem o TensorFlow',
+    title2: 'Modelos para IA',
+    description: 'Criação de modelos personalizados para treinamento de redes neurais utilizando a biblioteca TensorFlow.',
     image: '/tumb-mcml-alter.webp',
   },
   {
     place: 'Multi Threads Node.js',
     title: 'Worker Threads',
     title2: 'Node.js',
-    description: 'Exemplifica a otimização do tempo de execucao e recursos utilizando múltiplas threads com node.js',
-    image: '/tumb-work-threads-node.webp'
+    description: 'Demonstração de otimização em Node.js usando múltiplas threads para melhorar desempenho e alocar recursos de forma eficiente.',
+    image: '/tumb-work-threads-node.webp',
   },
-  {
-    place: 'Cappadocia - Turkey',
-    title: 'Göreme',
-    title2: 'Valley',
-    description: 'Göreme Valley in Cappadocia is a historical marvel set against a unique geological backdrop, where centuries of wind and water have sculpted the landscape into whimsical formations. The valley is also famous for its open-air museums, underground cities, and the enchanting experience of hot air ballooning.',
-    image: 'https://assets.codepen.io/3685267/timed-cards-6.jpg'
-  },
-  {
-    place: 'Japan Alps',
-    title: 'NANGANO',
-    title2: 'PREFECTURE',
-    description: 'Nagano Prefecture, set within the majestic Japan Alps, is a cultural treasure trove with its historic shrines and temples, particularly the famous Zenkō-ji. The region is also a hotspot for skiing and snowboarding, offering some of the country\'s best powder.',
-    image: 'https://assets.codepen.io/3685267/timed-cards-2.jpg'
-  },
-]
+];
 
 export {
-  dataCards
-}
+  dataCards,
+};
