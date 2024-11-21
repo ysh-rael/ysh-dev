@@ -33,6 +33,32 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.is-disabled {
+  cursor: not-allowed !important;  /* Exibe um cursor de "não permitido" */
+  opacity: .5;
+}
+
+.is-disabled:hover::after {
+  position: absolute;
+  content: '🚫 Link Indisponivel';
+  background-color: whitesmoke;
+  color: #2c2c2c;
+  text-wrap: wrap;
+  font-size: .8rem;
+  width: 140px;
+  height: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  top: calc(100% + 12px);
+  left: 0;
+  animation: showSlow .8s  .2s backwards normal;
+}
+
+@keyframes showSlow {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
 /*LAYOUT*/
 /*CÓDIGO COMENTADO É REFERENTE AO MENU LATERAL.*/
 

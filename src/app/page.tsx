@@ -8,6 +8,7 @@ import CardProject from '@/component/card-project';
 import ProfileGithub from '@/component/profile-github';
 import Contact from '@/component/contect';
 import HighlightShowcase from '@/component/highlight-show-case';
+import { dataCards, outherCards } from '@/mocks/notices/data';
 
 export default function Home() {
 
@@ -16,21 +17,22 @@ export default function Home() {
 
       <HighlightShowcase />
 
-      <span className='title'>Projects</span>
-      <div className='conteiner-cards-projects'>
-
-        <CardProject />
-        <CardProject />
-        <CardProject />
-        <CardProject />
-        <CardProject />
-
-      </div>
 
       <span className='title'>About me</span>
       <div className="conteiner-about-me">
         <ProfileGithub />
       </div>
+
+
+
+      <span className='title'>All Public Projects</span>
+      <div className='conteiner-cards-projects'>
+        {[...dataCards, ...outherCards].map(($, i) => <CardProject
+          key={i}
+          data={$}
+        />)}
+      </div>
+
 
       <footer className='footer'>
 
