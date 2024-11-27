@@ -12,6 +12,7 @@ function gerarLinkImageLanguages(repo) {
 
 const dataCards = [
   {
+    id: 'lpr-br',
     place: 'LPR',
     title: 'LPR-br',
     title2: 'Placa Brasil/Mercosul',
@@ -23,6 +24,7 @@ const dataCards = [
     github: 'https://github.com/ysh-rael/LPR-br',
   },
   {
+    id: 'browser-hash',
     place: 'Fingerprint Browser',
     title: 'Browser Hash',
     title2: 'ID de máquina',
@@ -35,6 +37,7 @@ const dataCards = [
     link: 'https://ysh-rael.github.io/browser-hash/'
   },
   {
+    id: 'mcml',
     place: 'Machine Learning',
     title: 'MCML',
     title2: 'Modelos para IA',
@@ -46,6 +49,7 @@ const dataCards = [
     github: 'https://github.com/ysh-rael/MCML',
   },
   {
+    id: 'worker-threads',
     place: 'Multi Threads Node.js',
     title: 'Worker Threads',
     title2: 'Node.js',
@@ -60,6 +64,7 @@ const dataCards = [
 
 const outherCards = [
   {
+    id: 'drag-drop',
     place: 'Templete em React',
     title: 'Drag and Drop',
     title2: 'Cards em React',

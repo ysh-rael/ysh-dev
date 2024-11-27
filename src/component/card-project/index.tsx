@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./styles.css"
 
 interface data {
+  id: string;
   place: string;
   title: string;
   title2: string;
@@ -24,7 +25,7 @@ export default function CardProject({ data }: { data: data }) {
 
 
   return (
-    <div className="CardProject card">
+    <div className="CardProject card" id={dataCards.id}>
       <div className="card-image">
         <figure className="image is-5by3 image-card">
           <picture 

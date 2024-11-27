@@ -65,26 +65,26 @@ export default function Header(params: Params) {
 
       <img id="img-tux" src="/tux-dev.gif" alt="Tux is also a software developer" style={{left: `calc(${positionTux}% ${positionTux >= 98 ? '- 32px' : ''})` || 'calc(100% - 56px)'}} onDragStart={() => setTuxIsDragging(true)} onDragEnd={() => setTuxIsDragging(false)} />
 
-      <button className="button bttn-show-options-header" type="button">
+      <a className="button bttn-show-options-header" type="button">
         <i className="fa fa-plus has-text-primary"></i>
-      </button>
+      </a>
 
       <div className="box-options-header box-social-media">
-        <button className="button is-success is-light" title="Download Curriculum">
+        <a download='yshrael-curriculo-pt-2024' href='/curriculo.pdf' className="button is-success is-light" title="Download Curriculum">
           <i className="fa fa-download has-text-success"></i>
-        </button>
+        </a>
 
-        <button className="button is-light" title="Github">
+        <a href='https://github.com/ysh-rael/' target='_blank' className="button is-light" title="Github">
           <i className="fa fa-github"></i>
-        </button>
+        </a>
 
-        <button className="button is-info" title="Linkedin">
+        <a href='https://www.linkedin.com/in/yshrael-pimentel/' target='_blank' className="button is-info" title="Linkedin">
           <i className="fa fa-linkedin has-text-white"></i>
-        </button>
+        </a>
 
-        <button className="button is-danger is-light" title="View more options">
+        <a href='mailto:ysp.rael@gmail.com' target='_blank'  className="button is-danger is-light" title="Enviar Email">
           <i className="fa-regular fa-envelope has-text-danger"></i>
-        </button>
+        </a>
       </div>
 
     </header>

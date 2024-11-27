@@ -25,7 +25,7 @@ export default function Home() {
 
 
 
-      <span className='title'>All Public Projects</span>
+      <span className='title' id='all-projects'>All Public Projects</span>
       <div className='conteiner-cards-projects'>
         {[...dataCards, ...outherCards].map(($, i) => <CardProject
           key={i}
@@ -37,21 +37,21 @@ export default function Home() {
       <footer className='footer'>
 
         <div className="container-social-media">
-          <button className="button is-success has-text-success is-light" title="Download Curriculum">
+          <a download='yshrael-curriculo-pt-2024' href='/curriculo.pdf' className="button is-success has-text-success is-light" title="Download Curriculum">
             <i className="fa fa-download"></i><span className='label-btton' >&nbsp;Curriculum</span>
-          </button>
+          </a>
 
-          <button className="button is-light" title="Github">
+          <a href='https://github.com/ysh-rael/' target='_blank' className="button is-light" title="Github">
             <i className="fa fa-github"></i><span className="label-btton">&nbsp;Github</span>
-          </button>
+          </a>
 
-          <button className="button is-info" title="Linkedin">
+          <a href='https://www.linkedin.com/in/yshrael-pimentel/' target='_blank' className="button is-info" title="Linkedin">
             <i className="fa fa-linkedin has-text-white"></i><span className="label-btton">&nbsp;Linkedin</span>
-          </button>
+          </a>
 
-          <button className="button is-danger is-light" title="Send me an e-mail">
+          <a href='mailto:ysp.rael@gmail.com' target='_blank' className="button is-danger is-light" title="Send me an e-mail">
             <i className="fa-regular fa-envelope"></i><span className="label-btton">&nbsp;Enviar E-mail</span>
-          </button>
+          </a>
         </div>
 
         <div>@Ysh-rael - 2024 <code>V3.0.0</code></div>

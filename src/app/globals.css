@@ -33,6 +33,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+html, * {
+  scroll-behavior: smooth;
+}
+
 .is-disabled {
   cursor: not-allowed !important;  /* Exibe um cursor de "não permitido" */
   opacity: .5;

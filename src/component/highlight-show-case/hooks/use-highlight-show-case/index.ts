@@ -25,6 +25,7 @@ class UseHighlightShowcase {
     numberSize: number;
     ease: string;
     clicks: number;
+    skipStep: boolean;
 
     /**
      * Initializes a new instance of the UseHighlightShowcase.
@@ -36,6 +37,7 @@ class UseHighlightShowcase {
         this.dataCards = dataCards;
         this.order = order || dataCards.map((getElementById, i) => i);
         this.detailsEven = true;
+        this.skipStep = false;
         this.offsetTop = 200;
         this.offsetLeft = 400;
         this.cardWidth = 200;

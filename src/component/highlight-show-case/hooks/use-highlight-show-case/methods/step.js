@@ -1,7 +1,10 @@
 import { gsap } from "gsap";
 
+
 /**
  * Updates the card order and animates the transition to the next active card.
+ * 
+ * @param {1|-1} rollback Indica se dev avancar ou retroceder o carroseel.
  *
  * This function shifts the order of the cards, updates the details of the 
  * active card, and performs various GSAP animations to smoothly transition 
@@ -9,9 +12,14 @@ import { gsap } from "gsap";
  *
  * @returns {Promise<void>} A promise that resolves when the step animation is complete.
  */
-function step() {
+function step(rollback ) {
     return new Promise((resolve) => {
-        this.order.push(this.order.shift());
+        if (typeof rollback === 'number' ) this.skipStep = true // Apertou o botao
+        if (rollback === -1) {
+            const temp = this.order[this.order.length-1] 
+            this.order.pop()
+            this.order.splice(0, 0, temp)
+        } else this.order.push(this.order.shift());
         this.detailsEven = !this.detailsEven;
 
         const [active, ...rest] = this.order;
