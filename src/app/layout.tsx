@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import "../../lib/css/bulma@1.0.2/bulma.min.css";
 import Header from "@/partial/header";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export default function RootLayout({
           {children}
           </div>
       
-          <script src="https://kit.fontawesome.com/ed21d56832.js" crossOrigin="anonymous"></script>
+        <Script src="https://kit.fontawesome.com/ed21d56832.js" crossOrigin="anonymous" ></Script>
       </body>
     </html>
   );

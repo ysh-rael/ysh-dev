@@ -59,7 +59,7 @@ export default function CardProject({ data }: { data: data }) {
         </div>
 
         <div className="is-hidden">
-          {dataCards.tags.map($ => (<a>@{$}</a>))}
+          {dataCards.tags.map(($, i) => (<a key={i}>@{$}</a>))}
         </div>
 
         <div className="group-buttons">
