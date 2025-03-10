@@ -11,6 +11,23 @@ export default function Header(params: Params) {
   const inptSearchRef = useRef<HTMLInputElement | null>(null); // Ref para o input de busca
   const [positionTux, setPositionTux] = useState(98)
   const [tuxIsDragging, setTuxIsDragging] = useState(false)
+  useEffect(() => {
+    inptSearchRef.current?.addEventListener('focusin', ({target}) => {
+      if (!(inptSearchRef.current?.classList.contains('large-inpt'))) {
+        inptSearchRef.current?.classList.add('large-inpt')
+      }
+      console.log(`entrou`)
+    })
+
+    inptSearchRef.current?.addEventListener('focusout', ({ target }) => {
+      if (inptSearchRef.current?.classList.contains('large-inpt')) {
+        inptSearchRef.current?.classList.remove('large-inpt')
+      }
+      console.log(`saiu`)
+
+    })
+
+  }, [])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

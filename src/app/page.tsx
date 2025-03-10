@@ -15,9 +15,9 @@ export default function Home() {
   return (
     <div className='Home'>
 
-      <HighlightShowcase />
+      {/* <HighlightShowcase /> */}
 
-
+      <br /><br />
       <span className='title'>About me</span>
       <div className="conteiner-about-me">
         <ProfileGithub />
