@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# YS-Dev
 
-## Getting Started
+Site pessoal em Next.js com o portal de licenças YSdesk em `/ysdesk`.
 
-First, run the development server:
+## Configurar o YSdesk
+
+Copie `.env.example` para `.env.local` e preencha as credenciais. No PowerShell:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+- `MONGODB_URI`: URI do MongoDB Atlas. O usuário do banco precisa ter acesso ao banco configurado em `MONGODB_DB` e o IP do servidor precisa estar na lista de acesso do Atlas.
+- `MONGODB_DB`: banco usado pelo portal (padrão sugerido: `ysdesk`).
+- `YS_DESK_AUTH_SECRET`: segredo aleatório com pelo menos 32 caracteres. Gere um com `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`.
+- `YS_DESK_APP_URL`: URL pública do portal, sem barra no final. Em produção, configure o domínio HTTPS para os webhooks.
+- `MERCADOPAGO_ACCESS_TOKEN`: token privado da aplicação Mercado Pago.
+- `MERCADOPAGO_WEBHOOK_SECRET`: chave secreta de assinatura de notificações da aplicação Mercado Pago.
+
+Configure a URL de notificações de pagamento no painel do Mercado Pago para `{YS_DESK_APP_URL}/api/ysdesk/webhook`, selecionando notificações de pagamentos. A licença só é criada após validar a assinatura do webhook, consultar o pagamento no Mercado Pago e conferir valor e moeda.
+
+O YSdesk usa os planos de 2 máquinas por R$ 39,98, 10 por R$ 179,91 (10% de desconto), 20 por R$ 347,83 (13% de desconto) e 100 por R$ 1.499,25. Cada pacote vale três meses-calendário a partir da aprovação do pagamento. O preço base é R$ 19,99 por máquina.
+
+Para tornar uma conta administradora, cadastre-se normalmente e altere diretamente no Atlas o campo `master` do documento do usuário:
+
+```javascript
+db.users.updateOne({ email: "seu-email@exemplo.com" }, { $set: { master: true } })
+```
+
+O campo é consultado no banco a cada requisição administrativa; não existe ação de promoção de usuários na interface. Nunca publique `.env.local` ou inclua tokens e senhas no repositório.
+
+## Desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Abra `http://localhost:3000/ysdesk` para acessar o portal.
