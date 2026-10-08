@@ -50,3 +50,20 @@
 
 
 }
+
+.box-most-languages {
+
+    .label {
+        font-size: 0.8em;
+    }
+    
+    .subtitle {
+        font-size: 1em;
+        margin: 0 !important;
+    }
+
+    div > img {
+        max-width: 32px;
+    }
+
+}

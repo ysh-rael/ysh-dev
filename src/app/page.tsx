@@ -18,14 +18,14 @@ export default function Home() {
       {/* <HighlightShowcase /> */}
 
       <br /><br />
-      <span className='title'>About me</span>
+      <span className='title'>Yshrael Pimentel <span className='subtitle'>Analista de Sistemas</span></span>
       <div className="conteiner-about-me">
         <ProfileGithub />
       </div>
 
 
 
-      <span className='title' id='all-projects'>All Public Projects</span>
+      <span className='title' id='all-projects'>Destaque Projetos Públicos</span>
       <div className='conteiner-cards-projects'>
         {[...dataCards, ...outherCards].map(($, i) => <CardProject
           key={i}
@@ -54,7 +54,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div>@Ysh-rael - 2024 <code>V3.0.0</code></div>
+        <div>@Ysh-rael - 2026 <code>V3.0.1</code></div>
         </footer>
 
     </div>

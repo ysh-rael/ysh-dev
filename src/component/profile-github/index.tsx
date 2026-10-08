@@ -48,19 +48,19 @@ export default function ProfileGithub() {
     return (
         <div className="container-about-me">
             <div className='ysh'>
-                <img src="https://avatars.githubusercontent.com/u/79410863?v=4" alt="me" /> <br />
+                <img style={{ maxWidth: '240px' }} src="https://avatars.githubusercontent.com/u/79410863?v=4" alt="me" /> <br />
                 <span className='subtitle'>ysh-rael · he/him</span>
                 {/* <p className='text'>
                     🐧 Software developer with emphasis on web development
                 </p> */}
                 <p className='text'>
-                    Software developer at Bra Solucoes
+                    Analista de Sistemas na <a href="https://brasolucoes.com" target="_blank" rel="noopener noreferrer">Bra Solucoes</a>
                 </p>
                 <ul className='ul'>
                     <li className='li'>Belém PA, Brasil | {currentDate} (UTC -03:00)</li>
                     <li className='li'><a href="mailto:Ysp.rael@gmail.com">Ysp.rael@gmail.com</a></li>
-                    <li className='li'><a href="https://yshrael.vercel.app/">Yshrael vercel app</a></li>
                     <li className='li'><a href="https://linkedin/in/yshrael-pimentel">in/yshrael-pimentel</a></li>
+                    <li className='li'><a href="/ysdesk">YsDesk</a></li>
                 </ul>
             </div>
             <div className='box-most-languages'>
@@ -68,7 +68,7 @@ export default function ProfileGithub() {
                 <img
                     style={{ float: 'right' }}
                     height="200"
-                    src="https://camo.githubusercontent.com/6a3ebc1a9db9b20efb7a71693ec682828841b95c31158386ec313f28f4d00757/68747470733a2f2f6769746875622d726561646d652d73746174732e76657263656c2e6170702f6170692f746f702d6c616e67732f3f757365726e616d653d5973682d7261656c266c61796f75743d636f6d70616374266c616e67735f636f756e743d37267468656d653d636f6465535441434b72"
+                    src="https://github-readme-stats.vercel.app/api/top-langs/?username=Ysh-rael&layout=compact&langs_count=7&theme=codeSTACKr"
                     alt="Top Languages"
                 />
                 {/* Tabela de habilidades */}

@@ -1,4 +1,4 @@
-function gerarLinkImageLanguages(repo) {
+export function gerarLinkImageLanguages(repo) {
   const github = 'https://github-readme-stats.vercel.app/api/pin'
   const username = 'ysh-rael'
   const layout = 'compact'

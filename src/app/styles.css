@@ -28,7 +28,7 @@ footer {
 }
 
 .text-contrast * {
-  color: black !important ;
+  color: black !important;
 }
 
 @media (max-width: 640px) {
@@ -36,32 +36,32 @@ footer {
     display: none;
   }
 
-    .container-social-media button:hover::after {
-      position: absolute;
-      right: 25%;
-      top: calc(100% + 12px);
-      background: whitesmoke;
-      padding: 4px;
-      border-radius: 4px;
-      box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.445);
-      animation: showLabel 1400ms;
-    }
-  
-    .container-social-media button:nth-child(1):hover::after {
-      content: 'Downalod Curriculunm';
-    }
-  
-    .container-social-media button:nth-child(2):hover::after {
-      content: 'Github';
-    }
-  
-    .container-social-media button:nth-child(3):hover::after {
-      content: 'Linkedin';
-    }
-  
-    .container-social-media button:nth-child(4):hover::after {
-      content: 'Enviar e-mail';
-    }
+  .container-social-media button:hover::after {
+    position: absolute;
+    right: 25%;
+    top: calc(100% + 12px);
+    background: whitesmoke;
+    padding: 4px;
+    border-radius: 4px;
+    box-shadow: -2px 4px 12px rgba(0, 0, 0, 0.445);
+    animation: showLabel 1400ms;
+  }
+
+  .container-social-media button:nth-child(1):hover::after {
+    content: 'Downalod Curriculunm';
+  }
+
+  .container-social-media button:nth-child(2):hover::after {
+    content: 'Github';
+  }
+
+  .container-social-media button:nth-child(3):hover::after {
+    content: 'Linkedin';
+  }
+
+  .container-social-media button:nth-child(4):hover::after {
+    content: 'Enviar e-mail';
+  }
 }
 
 .Notices {
@@ -353,7 +353,9 @@ footer {
   justify-items: center;
   row-gap: 24px;
   align-items: stretch;
-    /* Garante que todos os itens tenham a mesma altura */
+  gap: 24px;
+  row-wrap: wrap;
+  column-wrap: wrap;
 }
 
 
@@ -364,14 +366,15 @@ footer {
 
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1630px) {
   .conteiner-cards-projects {
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
   }
 
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1230px) {
   .conteiner-cards-projects {
     grid-template-columns: 1fr 1fr;
   }
