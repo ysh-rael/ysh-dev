@@ -13,12 +13,13 @@ interface data {
   link: string | undefined;
   github: string | undefined;
   languages: string | undefined;
-  usingLanguages: boolean;
+  usingLanguages: boolean | undefined;
 }
 
 export default function CardProject({ data }: { data: data }) {
   
   if (typeof data.usingLanguages !== 'boolean')
+    // eslint-disable-next-line react-hooks/immutability
     data.usingLanguages = !!data.usingLanguages
   const [dataCards, setDataCards] = useState(data)
 

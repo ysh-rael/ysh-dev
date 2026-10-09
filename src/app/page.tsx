@@ -1,6 +1,7 @@
 
 
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 'use client'
 import './styles.css'
@@ -9,21 +10,28 @@ import ProfileGithub from '@/component/profile-github';
 import Contact from '@/component/contect';
 import HighlightShowcase from '@/component/highlight-show-case';
 import { dataCards, outherCards } from '@/mocks/notices/data';
+import Header from '@/partial/header';
+import language from '@/component/Logo/language';
+import Styles from '@/component/Logo/styles.module.css'
+
 
 export default function Home() {
 
   return (
     <div className='Home'>
+      <Header />
 
-      {/* <HighlightShowcase /> */}
+      <br />
 
-      <br /><br />
-      <span className='title'>Yshrael Pimentel <span className='subtitle'>Analista de Sistemas</span></span>
+      <span className='title'>Yshrael Pimentel 
+        &nbsp;
+        <span className={`${Styles.Secundary} tag has-text-primary`}> {language.english.secundary} </span>
+        </span>
       <div className="conteiner-about-me">
         <ProfileGithub />
       </div>
 
-
+      <HighlightShowcase />
 
       <span className='title' id='all-projects'>Destaque Projetos Públicos</span>
       <div className='conteiner-cards-projects'>
@@ -55,7 +63,7 @@ export default function Home() {
         </div>
 
         <div>@Ysh-rael - 2026 <code>V3.0.1</code></div>
-        </footer>
+      </footer>
 
     </div>
   )

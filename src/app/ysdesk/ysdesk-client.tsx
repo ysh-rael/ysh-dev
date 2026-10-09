@@ -191,6 +191,7 @@ export default function YsdeskClient() {
       });
       setPayment(result);
     } catch (error) {
+        console.log(error);
       setMessage(error instanceof Error ? error.message : "Não foi possível criar o PIX.");
     } finally {
       setBusyPlan(null);

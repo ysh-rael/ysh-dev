@@ -13,8 +13,9 @@ Copy-Item .env.example .env.local
 - `MONGODB_URI`: URI do MongoDB Atlas. O usuário do banco precisa ter acesso ao banco configurado em `MONGODB_DB` e o IP do servidor precisa estar na lista de acesso do Atlas.
 - `MONGODB_DB`: banco usado pelo portal (padrão sugerido: `ysdesk`).
 - `YS_DESK_AUTH_SECRET`: segredo aleatório com pelo menos 32 caracteres. Gere um com `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`.
-- `YS_DESK_APP_URL`: URL pública do portal, sem barra no final. Em produção, configure o domínio HTTPS para os webhooks.
+- `YS_DESK_APP_URL`: URL HTTPS pública do portal, sem barra no final. O Mercado Pago rejeita `localhost` e HTTP; em desenvolvimento, use um túnel HTTPS público (por exemplo, ngrok ou Cloudflare Tunnel) apontando para a porta do Next.
 - `MERCADOPAGO_ACCESS_TOKEN`: token privado da aplicação Mercado Pago.
+- `MERCADOPAGO_TEST_PAYER_EMAIL`: e-mail de um usuário comprador de teste; usado junto de um Access Token `TEST-` durante o desenvolvimento. Em `npm run dev`, o checkout recusa credenciais live para evitar cobranças reais.
 - `MERCADOPAGO_WEBHOOK_SECRET`: chave secreta de assinatura de notificações da aplicação Mercado Pago.
 
 Configure a URL de notificações de pagamento no painel do Mercado Pago para `{YS_DESK_APP_URL}/api/ysdesk/webhook`, selecionando notificações de pagamentos. A licença só é criada após validar a assinatura do webhook, consultar o pagamento no Mercado Pago e conferir valor e moeda.

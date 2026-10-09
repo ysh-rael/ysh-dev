@@ -8,7 +8,8 @@
     "start": "next start",
     "central:dev": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --watch src/server/ysdesk-central.mjs",
     "central:start": "node --env-file-if-exists=.env --env-file-if-exists=.env.local src/server/ysdesk-central.mjs",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "generate:key": "node --input-type=module -e \"import { generateKeyPairSync } from 'node:crypto'; const { publicKey, privateKey } = generateKeyPairSync('ed25519'); console.log('YS_DESK_LICENSE_PRIVATE_KEY_BASE64=' + Buffer.from(privateKey.export({ type: 'pkcs8', format: 'pem' })).toString('base64')); console.log('YS_DESK_LICENSE_KEY_ID=ysdesk-ed25519-v1'); console.log('Chave pública para o cliente desktop:\n' + publicKey.export({ type: 'spki', format: 'pem' }));\""
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",

@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500&display=swap");
 
 .Home {
+  max-width: 100dvw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
 }
 
 .Home>div {
