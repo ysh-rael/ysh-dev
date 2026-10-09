@@ -20,11 +20,20 @@ export async function getDatabase(): Promise<Db> {
     globalMongo.ysdeskIndexesPromise = Promise.all([
       database.collection("users").createIndex({ email: 1 }, { unique: true }),
       database.collection("devices").createIndex({ userId: 1, status: 1 }),
+      database.collection("devices").createIndex({ installationId: 1 }, { unique: true, sparse: true }),
+      database.collection("devices").createIndex({ activationCodeHash: 1 }, { unique: true, sparse: true }),
       database.collection("licenses").createIndex({ paymentId: 1 }, { unique: true }),
       database.collection("licenses").createIndex({ userId: 1, expiresAt: 1 }),
       database.collection("payments").createIndex({ externalReference: 1 }, { unique: true }),
       database.collection("payments").createIndex({ mercadoPagoId: 1 }, { unique: true, sparse: true }),
       database.collection("payments").createIndex({ userId: 1, createdAt: -1 }),
+      database.collection("centralTokens").createIndex({ tokenHash: 1 }, { unique: true }),
+      database.collection("centralTokens").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
+      database.collection("centralTokens").createIndex({ installationId: 1, revokedAt: 1 }),
+      database.collection("centralSessions").createIndex({ sessionId: 1 }, { unique: true }),
+      database.collection("centralSessions").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
+      database.collection("relayTickets").createIndex({ tokenHash: 1 }, { unique: true }),
+      database.collection("relayTickets").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
     ]).then(() => undefined);
   }
 

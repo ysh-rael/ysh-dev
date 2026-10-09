@@ -20,7 +20,9 @@ export async function GET() {
     devices: devices.map((device) => ({
       id: device._id.toHexString(),
       name: device.name,
-      activationCode: device.activationCode,
+      connected: device.presenceState !== "offline" && !!device.lastSeenAt && now.getTime() - device.lastSeenAt.getTime() < 90_000,
+      activationPending: !!device.activationCodeHash && !!device.activationExpiresAt && device.activationExpiresAt > now,
+      lastSeenAt: device.lastSeenAt?.toISOString() || null,
       createdAt: device.createdAt.toISOString(),
     })),
     licenses: licenses.map((license) => ({

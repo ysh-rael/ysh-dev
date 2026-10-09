@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "central:dev": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --watch src/server/ysdesk-central.mjs",
+    "central:start": "node --env-file-if-exists=.env --env-file-if-exists=.env.local src/server/ysdesk-central.mjs",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -17,6 +19,7 @@
     "next": "16.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
+    "ws": "^8.22.0",
     "zod": "^4.6.5"
   },
   "devDependencies": {

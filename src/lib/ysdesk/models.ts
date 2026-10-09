@@ -13,10 +13,55 @@ export interface DeviceRecord {
   _id: ObjectId;
   userId: ObjectId;
   name: string;
-  activationCode: string;
+  activationCode?: string;
+  activationCodeHash?: string;
+  activationExpiresAt?: Date;
   status: "active" | "removed";
   createdAt: Date;
   removedAt?: Date;
+  installationId?: string;
+  publicKeySpki?: string;
+  publicKeyFingerprint?: string;
+  activatedAt?: Date;
+  lastSeenAt?: Date;
+  presenceState?: "ready" | "busy" | "offline";
+}
+
+export interface CentralTokenRecord {
+  _id?: ObjectId;
+  tokenHash: string;
+  installationId: string;
+  deviceId: ObjectId;
+  userId: ObjectId;
+  scopes: string[];
+  createdAt: Date;
+  expiresAt: Date;
+  revokedAt?: Date;
+}
+
+export interface CentralSessionRecord {
+  _id?: ObjectId;
+  sessionId: string;
+  hostInstallationId: string;
+  viewerInstallationId: string;
+  hostDeviceId: ObjectId;
+  viewerDeviceId: ObjectId;
+  requestedCapabilities: string[];
+  state: "pending" | "accepted" | "rejected" | "connected" | "closed" | "expired";
+  createdAt: Date;
+  expiresAt: Date;
+  connectedAt?: Date;
+  closedAt?: Date;
+}
+
+export interface RelayTicketRecord {
+  _id?: ObjectId;
+  tokenHash: string;
+  sessionId: string;
+  installationId: string;
+  role: "host" | "viewer";
+  expiresAt: Date;
+  usedAt?: Date;
 }
 
 export interface LicenseRecord {

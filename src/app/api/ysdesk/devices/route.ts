@@ -1,4 +1,5 @@
 import { randomBytes } from "node:crypto";
+import { createHash } from "node:crypto";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -17,11 +18,13 @@ export async function POST(request: Request) {
 
   const database = await getDatabase();
   const session = database.client.startSession();
+  const activationCode = randomBytes(24).toString("hex").toUpperCase();
   const device: DeviceRecord = {
     _id: new ObjectId(),
     userId: user._id,
     name: input.data.name,
-    activationCode: randomBytes(6).toString("hex").toUpperCase(),
+    activationCodeHash: createHash("sha256").update(activationCode).digest("hex"),
+    activationExpiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
     status: "active",
     createdAt: new Date(),
   };
@@ -55,7 +58,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({
-    device: { id: device._id.toHexString(), name: device.name, activationCode: device.activationCode, createdAt: device.createdAt.toISOString() },
+    device: { id: device._id.toHexString(), name: device.name, activationCode, activationExpiresAt: device.activationExpiresAt?.toISOString(), createdAt: device.createdAt.toISOString() },
   }, { status: 201 });
 }
 
@@ -67,11 +70,16 @@ export async function DELETE(request: Request) {
   if (!input.success) return NextResponse.json({ error: "Dispositivo inválido." }, { status: 400 });
 
   const database = await getDatabase();
+  const removedAt = new Date();
   const result = await database.collection<DeviceRecord>("devices").updateOne(
     { _id: new ObjectId(input.data.id), userId: user._id, status: "active" },
-    { $set: { status: "removed", removedAt: new Date() } },
+    { $set: { status: "removed", removedAt }, $unset: { activationCode: "", activationCodeHash: "" } },
   );
 
   if (!result.modifiedCount) return NextResponse.json({ error: "Dispositivo não encontrado." }, { status: 404 });
+  await database.collection("centralTokens").updateMany(
+    { deviceId: new ObjectId(input.data.id), revokedAt: { $exists: false } },
+    { $set: { revokedAt: removedAt } },
+  );
   return NextResponse.json({ success: true });
 }

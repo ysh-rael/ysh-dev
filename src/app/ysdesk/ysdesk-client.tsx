@@ -25,7 +25,7 @@ import {
 import { formatBRL, plans, type PlanId } from "@/lib/ysdesk/plans";
 
 type DeskUser = { id: string; email: string; master: boolean; createdAt: string };
-type DeskDevice = { id: string; name: string; activationCode: string; createdAt: string };
+type DeskDevice = { id: string; name: string; connected: boolean; activationPending: boolean; lastSeenAt: string | null; createdAt: string };
 type DeskLicense = {
   id: string;
   machineCount: number;
@@ -127,6 +127,7 @@ export default function YsdeskClient() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [deviceName, setDeviceName] = useState("");
+  const [activationCode, setActivationCode] = useState<string | null>(null);
   const [payment, setPayment] = useState<PaymentData | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -242,8 +243,9 @@ export default function YsdeskClient() {
     setBusy(true);
     setMessage("");
     try {
-      await requestJson("/api/ysdesk/devices", { method: "POST", body: JSON.stringify({ name: deviceName }) });
+      const result = await requestJson<{ device: { activationCode: string } }>("/api/ysdesk/devices", { method: "POST", body: JSON.stringify({ name: deviceName }) });
       setDeviceName("");
+      setActivationCode(result.device.activationCode);
       await refreshAccount();
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Não foi possível cadastrar o dispositivo.");
@@ -317,8 +319,8 @@ export default function YsdeskClient() {
               {account.devices.length ? <div className="ys-device-list">
                 {account.devices.map((device) => <article className="ys-device-row" key={device.id}>
                   <span className="ys-device-icon"><Laptop size={20} /></span>
-                  <div className="ys-device-main"><strong>{device.name}</strong><span>Código {device.activationCode} · Adicionada em {formatDate(device.createdAt)}</span></div>
-                  <span className="ys-device-active"><i /> Ativa</span>
+                  <div className="ys-device-main"><strong>{device.name}</strong><span>{device.connected && device.lastSeenAt ? `Visto em ${formatDate(device.lastSeenAt)}` : device.activationPending ? "Aguardando vinculação com o desktop" : `Adicionada em ${formatDate(device.createdAt)}`}</span></div>
+                  <span className={`ys-device-active ${device.connected ? "" : "is-offline"}`}><i /> {device.connected ? "Online" : "Offline"}</span>
                   <button className="ys-remove-device" type="button" onClick={() => void removeDevice(device.id)} aria-label={`Remover ${device.name}`} title="Remover dispositivo"><Trash2 size={17} /></button>
                 </article>)}
               </div> : <div className="ys-empty-state"><Laptop size={26} /><strong>Nenhuma máquina cadastrada</strong><span>Adicione uma máquina para começar a usar sua licença.</span></div>}
@@ -386,6 +388,19 @@ export default function YsdeskClient() {
               <div className="ys-payment-status"><StatusLabel status={payment.status} /></div>
             </>}
             <p className="ys-payment-security"><ShieldCheck size={15} /> A licença é ativada após a confirmação do Mercado Pago.</p>
+          </section>
+        </div>}
+
+        {activationCode && <div className="ys-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setActivationCode(null); }}>
+          <section className="ys-payment-modal ys-activation-modal" role="dialog" aria-modal="true" aria-labelledby="ys-activation-title">
+            <button className="ys-modal-close" type="button" onClick={() => setActivationCode(null)} aria-label="Fechar"><X size={19} /></button>
+            <div className="ys-payment-icon"><Laptop size={22} /></div>
+            <p className="ys-eyebrow">VINCULAR DISPOSITIVO</p>
+            <h2 id="ys-activation-title">Código da máquina</h2>
+            <p className="ys-pix-instruction">Informe este código no YSdesk instalado nesta máquina. Ele pode ser usado uma vez e expira em 24 horas.</p>
+            <code className="ys-activation-code">{activationCode}</code>
+            <button className="button ys-copy-pix" type="button" onClick={() => { void navigator.clipboard.writeText(activationCode).then(() => { setCopied(true); window.setTimeout(() => setCopied(false), 1800); }); }}>{copied ? <Check size={17} /> : <Copy size={17} />}{copied ? "Código copiado" : "Copiar código"}</button>
+            <p className="ys-payment-security"><ShieldCheck size={15} /> O código não será exibido novamente.</p>
           </section>
         </div>}
       </main>

@@ -9,8 +9,7 @@ const sessionDurationSeconds = 60 * 60 * 24 * 7;
 
 function getSecret() {
   const secret = process.env.YS_DESK_AUTH_SECRET;
-    console.log('secret', secret);
-  if (!secret || secret.length < 32) {
+  if (!secret || secret.length < 32 || /^(replace-with|change-me|your-secret)/i.test(secret.trim())) {
     throw new Error("YS_DESK_AUTH_SECRET deve ter pelo menos 32 caracteres.");
   }
   return new TextEncoder().encode(secret);

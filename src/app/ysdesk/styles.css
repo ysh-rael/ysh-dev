@@ -1130,6 +1130,8 @@
 }
 
 .ys-device-active i { width: 6px; height: 6px; }
+.ys-device-active.is-offline { color: #8b7863; }
+.ys-device-active.is-offline i { background: #bd9b70; }
 .ys-remove-device { width: 32px; height: 32px; flex: 0 0 auto; border-radius: 4px; }
 
 .ys-empty-state {
@@ -1318,6 +1320,7 @@
 .ys-payment-approved > strong { font-size: 14px; }
 .ys-payment-approved > p { color: var(--ys-muted); font-size: 10px; }
 .ys-payment-approved .ys-button { margin-top: 8px; }
+.ys-activation-code { display: block; overflow-wrap: anywhere; margin: 15px 0 12px; padding: 13px 10px; border: 1px dashed #b5cbb9; border-radius: 4px; color: #265743; background: #f4f8f2; font-size: 17px; font-weight: 750; letter-spacing: 1px; }
 
 @media (min-width: 1500px) {
   .ys-hero { min-height: 570px; }
