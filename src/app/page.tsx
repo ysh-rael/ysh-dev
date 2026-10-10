@@ -37,7 +37,7 @@ export default function Home() {
       <div className="box-info-geral" >
         <i className="fa fa-exclamation-triangle has-text-warning"></i> &nbsp;
         
-        A maior parte do meu trabalho está em produtos de empresa e é fechado. Os repositórios públicos aqui são, em geral, bases e protótipos derivados de problemas reais que resolvi profissionalmente, simplificados ou recortados para poderem ser estudados e reaproveitados. Se você está pesquisando uma solução parecida, sinta-se à vontade pra usar como ponto de partida técnico.
+        Meus principais projetos são produtos proprietários da empresa. Aqui, compartilho protótipos e versões simplificadas para estudo e reutilização.
       </div>
 
       <span className='title' id='all-projects'>Destaque Projetos Públicos</span>

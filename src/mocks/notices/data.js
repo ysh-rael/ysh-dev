@@ -37,17 +37,17 @@ const dataCards = [
     link: ''
   },
   {
-    id: 'browser-hash',
-    place: 'Fingerprint Browser',
-    title: 'Browser Hash',
-    title2: 'Identificação sem Criação de Contas',
-    description: 'Ferramenta para identificação de usuários sem depender de informações pessoais ou criação de contas, utilizando fingerprinting na web.',
-    image: '/tumb-browser-hash.webp',
+    id: 'ys-ps3',
+    place: 'Controle Genérico ➞ xInput',
+    title: 'Ys PS3',
+    title2: 'Controle PS3 no Windows',
+    description: 'Utilizar Controle PS3 no Windows de Forma Simples e Leve',
+    image: '/tumb-ys-ps3.webp',
     owner: 'Ysh-rael',
-    tags: ['Javascript', 'Node.JS', 'Streaming', 'web', 'NextJs'],
+    tags: ['c++', 'PS3 Controller', 'xInput'],
     languages: '',
-    github: 'https://github.com/ysh-rael/browser-hash',
-    link: 'https://ysh-rael.github.io/browser-hash/'
+    github: 'https://github.com/ysh-rael/ys-ps3',
+    link: 'https://github.com/ysh-rael/ys-ps3/releases/download/v1.0.0/ys_ps3_setup_1.0.0_x64.exe'
   },
   {
     id: 'worker-threads',
@@ -64,6 +64,19 @@ const dataCards = [
 ];
 
 const outherCards = [
+  {
+    id: 'browser-hash',
+    place: 'Fingerprint Browser',
+    title: 'Browser Hash',
+    title2: 'Identificação sem Criação de Contas',
+    description: 'Ferramenta para identificação de usuários sem depender de informações pessoais ou criação de contas, utilizando fingerprinting na web.',
+    image: '/tumb-browser-hash.webp',
+    owner: 'Ysh-rael',
+    tags: ['Javascript', 'Node.JS', 'Streaming', 'web', 'NextJs'],
+    languages: '',
+    github: 'https://github.com/ysh-rael/browser-hash',
+    link: 'https://ysh-rael.github.io/browser-hash/'
+  },
   {
     id: 'mcml',
     place: 'Machine Learning',
