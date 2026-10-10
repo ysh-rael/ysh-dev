@@ -144,24 +144,25 @@ export default function Header() {
 
       <Image id="img-tux" src="/tux-dev.gif" width={48} height={48} unoptimized alt="Tux is also a software developer" style={{ left: `${positionTux > 100 ? 100 : positionTux}%`}} onDragStart={() => setTuxIsDragging(true)} onDragEnd={() => setTuxIsDragging(false)} />
 
-      <a className="button bttn-show-options-header" type="button">
+      {/* <a className="button bttn-show-options-header" type="button">
         <i className="fa fa-plus has-text-primary"></i>
-      </a>
+      </a> */}
 
       <div className="box-options-header box-social-media">
-        <a download='yshrael-curriculo-pt-2024' href='/curriculo.pdf' className="button is-success is-light" title="Download Curriculum">
+        {/* Utiliza tooltip com estilo para exibir informações adicionais ao passar o mouse sobre os ícones */}
+        <a download={`yshrael pimentel _ Software Developer ${new Date().getFullYear()}`} href='/curriculo.pdf' className="button is-success is-light tooltip tooltip-bottom" data-tooltip="Download Curriculum">
           <i className="fa fa-download has-text-success"></i>
         </a>
 
-        <a href='https://github.com/ysh-rael/' target='_blank' className="button is-light" title="Github">
+        <a href='https://github.com/ysh-rael/' target='_blank' className="button is-light tooltip tooltip-bottom" data-tooltip="Github">
           <i className="fa fa-github"></i>
         </a>
 
-        <a href='https://www.linkedin.com/in/yshrael-pimentel/' target='_blank' className="button is-info" title="Linkedin">
+        <a href='https://www.linkedin.com/in/yshrael-pimentel/' target='_blank' className="button is-info tooltip tooltip-bottom" data-tooltip="Linkedin">
           <i className="fa fa-linkedin has-text-white"></i>
         </a>
 
-        <a href='mailto:ysp.rael@gmail.com' target='_blank'  className="button is-danger is-light" title="Enviar Email">
+        <a href='mailto:ysp.rael@gmail.com' target='_blank'  className="button is-danger is-light tooltip tooltip-bottom" data-tooltip="Enviar Email">
           <i className="fa-regular fa-envelope has-text-danger"></i>
         </a>
       </div>

@@ -61,7 +61,19 @@ export default function ProfileGithub() {
                     <li className='li'><a href="mailto:Ysp.rael@gmail.com">Ysp.rael@gmail.com</a></li>
                     <li className='li'><a href="https://linkedin/in/yshrael-pimentel">in/yshrael-pimentel</a></li>
                     <li className='li'><a href="/ysdesk">YsDesk</a></li>
+                    <li className='li flex gap-2 w-full'>
+                        <a download={`yshrael pimentel _ Software Developer ${new Date().getFullYear()}`} href='/curriculo.pdf' className="button is-success is-light tooltip tooltip-bottom m-1" data-tooltip="Download Curriculum">
+                            <i className="fa fa-download has-text-success"></i>
+                        </a>
+                        <a href='https://github.com/ysh-rael/' target='_blank' className="button is-light tooltip tooltip-bottom m-1" data-tooltip="Github">
+                            <i className="fa fa-github"></i>
+                        </a>  
+                    </li>
                 </ul>
+
+                
+
+                  
             </div>
             <div className='box-most-languages'>
                 {/* Imagens principais */}

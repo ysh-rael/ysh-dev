@@ -50,18 +50,6 @@ const dataCards = [
     link: 'https://ysh-rael.github.io/browser-hash/'
   },
   {
-    id: 'mcml',
-    place: 'Machine Learning',
-    title: 'MCML',
-    title2: 'Modelos para IA',
-    description: 'Criação de modelos personalizados para treinamento de redes neurais utilizando a biblioteca TensorFlow.',
-    image: '/tumb-mcml-alter.webp',
-    owner: 'Ysh-rael',
-    tags: ['Javascript', 'Node.Js', 'Multi_Threads', 'TensorFlow'],
-    languages: gerarLinkImageLanguages('MCML'),
-    github: 'https://github.com/ysh-rael/MCML',
-  },
-  {
     id: 'worker-threads',
     place: 'Multi Threads Node.js',
     title: 'Worker Threads',
@@ -76,6 +64,18 @@ const dataCards = [
 ];
 
 const outherCards = [
+  {
+    id: 'mcml',
+    place: 'Machine Learning',
+    title: 'MCML',
+    title2: 'Modelos para IA',
+    description: 'Criação de modelos personalizados para treinamento de redes neurais utilizando a biblioteca TensorFlow.',
+    image: '/tumb-mcml-alter.webp',
+    owner: 'Ysh-rael',
+    tags: ['Javascript', 'Node.Js', 'Multi_Threads', 'TensorFlow'],
+    languages: gerarLinkImageLanguages('MCML'),
+    github: 'https://github.com/ysh-rael/MCML',
+  },
   {
     id: 'drag-drop',
     place: 'Templete em React',
