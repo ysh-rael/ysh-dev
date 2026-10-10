@@ -83,7 +83,7 @@ export default function HighlightShowcase() {
             <div className="showcase-layout">
                 <div className="showcase-copy" key={activeProject.id} aria-live="polite">
                     <div className="showcase-kicker"><Sparkles size={14} aria-hidden="true" /> PROJETO EM DESTAQUE <span /></div>
-                    <div className="showcase-project-index">{slideNumber(activeIndex)} <i /> {slideNumber(dataCards.length)}</div>
+                    <div className="showcase-project-index">{slideNumber(activeIndex)} <i /> {slideNumber(dataCards.length-1)}</div>
                     <p className="showcase-place">{activeProject.place}</p>
                     <h1 className="showcase-title"><span>{activeProject.title}</span><em>{activeProject.title2}</em></h1>
                     <p className="showcase-description">{activeProject.description}</p>
@@ -128,7 +128,7 @@ export default function HighlightShowcase() {
                 <button className="showcase-icon-button" type="button" aria-label="Próximo projeto" title="Próximo projeto" onClick={() => goTo(activeIndex + 1)}>
                     <ArrowRight size={17} aria-hidden="true" />
                 </button>
-                <span className="showcase-control-count"><strong>{slideNumber(activeIndex)}</strong> / {slideNumber(dataCards.length)}</span>
+                <span className="showcase-control-count"><strong>{slideNumber(activeIndex)}</strong> / {slideNumber(dataCards.length-1)}</span>
                 <div className="showcase-progress" aria-hidden="true">
                     <span key={`${activeIndex}-${isPaused}`} className={isPaused ? "is-paused" : ""} style={{ animationDuration: `${autoplayDelay}ms` }} />
                 </div>

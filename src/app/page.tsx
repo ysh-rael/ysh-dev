@@ -33,6 +33,13 @@ export default function Home() {
 
       <HighlightShowcase />
 
+      
+      <div className="box-info-geral" >
+        <i className="fa fa-exclamation-triangle has-text-warning"></i> &nbsp;
+        
+        A maior parte do meu trabalho está em produtos de empresa e é fechado. Os repositórios públicos aqui são, em geral, bases e protótipos derivados de problemas reais que resolvi profissionalmente, simplificados ou recortados para poderem ser estudados e reaproveitados. Se você está pesquisando uma solução parecida, sinta-se à vontade pra usar como ponto de partida técnico.
+      </div>
+
       <span className='title' id='all-projects'>Destaque Projetos Públicos</span>
       <div className='conteiner-cards-projects'>
         {[...dataCards, ...outherCards].map(($, i) => <CardProject

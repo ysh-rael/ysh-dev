@@ -358,6 +358,15 @@ footer {
   column-wrap: wrap;
 }
 
+.box-info-geral {
+  border: 2px dashed #ccc;
+  background-color: #3b3a3a47;
+  margin: 4rem 1rem 2rem 1rem !important;
+  max-width: 800px;
+  padding: 16px;
+  border-radius: 4px;
+}
+
 
 @media (max-width: 2000px) {
   .conteiner-cards-projects {
