@@ -12,9 +12,21 @@ export function gerarLinkImageLanguages(repo) {
 
 const dataCards = [
   {
+    id: 'nexodb',
+    place: 'Banco de Dados embarcado para Node.js',
+    title: 'Nexo DB',
+    title2: 'Banco de Dados embarcado para node.js',
+    description: 'Banco de dados documental embarcado, desenvolvido em C++, com integração nativa ao Node.js via Node-API.',
+    image: '/tumb-nexo-db.webp',
+    owner: 'Ysh-rael',
+    tags: ['C++', 'Node.JS', 'Node-API',  'Database'],
+    languages: gerarLinkImageLanguages('nexo-db'),
+    github: 'https://github.com/ysh-rael/nexo-db',
+  },
+  {
     id: 'lpr-br',
     place: 'LPR [Projeto Privado]',
-    title: 'LPR-br',
+    title: 'LPR br',
     title2: 'Placa Brasil/Mercosul',
     description: 'Solução para reconhecimento automático de placas veiculares, voltadas para veiculos homologados no Brasil. Ideal para sistemas de monitoramento e controle de acesso.',
     image: '/LPR-br.webp',
