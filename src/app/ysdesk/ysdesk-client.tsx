@@ -24,51 +24,7 @@ import {
 } from "lucide-react";
 import { formatBRL, plans, type PlanId } from "@/lib/ysdesk/plans";
 
-type DeskUser = { id: string; email: string; master: boolean; createdAt: string };
-type DeskDevice = { id: string; name: string; connected: boolean; activationPending: boolean; lastSeenAt: string | null; createdAt: string };
-type DeskLicense = {
-  id: string;
-  machineCount: number;
-  amountCents: number;
-  purchasedAt: string;
-  expiresAt: string;
-};
-type AccountData = {
-  user: DeskUser;
-  devices: DeskDevice[];
-  licenses: DeskLicense[];
-  seats: { total: number; used: number; available: number };
-};
-type PaymentData = {
-  id: string;
-  planName?: string;
-  machineCount: number;
-  amountCents: number;
-  status: string;
-  pixCode: string | null;
-  pixQrCodeBase64: string | null;
-  ticketUrl: string | null;
-};
-type AdminData = {
-  stats: {
-    users: number;
-    activeLicenses: number;
-    activeMachines: number;
-    sales: number;
-    revenueCents: number;
-    monthRevenueCents: number;
-  };
-  users: Array<{ id: string; email: string; master: boolean; createdAt: string }>;
-  licenses: Array<{
-    id: string;
-    email: string;
-    machineCount: number;
-    amountCents: number;
-    purchasedAt: string;
-    expiresAt: string;
-    active: boolean;
-  }>;
-};
+import type { DeskUser, AccountData, PaymentData, AdminData } from "./interfaces";
 
 async function requestJson<T>(url: string, options?: RequestInit): Promise<T> {
   const response = await fetch(url, {
@@ -113,6 +69,84 @@ function StatusLabel({ status }: { status: string }) {
   return <span className={`ys-status ${approved ? "is-approved" : rejected ? "is-rejected" : ""}`}>{label}</span>;
 }
 
+interface AdminPanelProps {
+  admin: AdminData | null;
+  onCreateLicense: () => void;
+  onRefresh: () => void;
+}
+
+function AdminPanel({ admin, onCreateLicense, onRefresh }: AdminPanelProps) {
+  return (
+    <div className="ys-admin-panel">
+      <div className="ys-page-heading">
+        <div>
+          <p className="ys-eyebrow">YS DESK · MASTER</p>
+          <h1>Painel de gestão</h1>
+          <p>Contas, licenças e vendas confirmadas.</p>
+        </div>
+        <div className="ys-page-heading-actions">
+          <button className="button ys-button" type="button" onClick={onCreateLicense}>
+            <Plus size={16} /> Criar licença gratuita
+          </button>
+          <button className="button ys-button ys-button-outline" type="button" onClick={onRefresh}>
+            <RefreshCw size={16} /> Atualizar
+          </button>
+        </div>
+      </div>
+      {!admin ? (
+        <div className="ys-empty-state"><span className="ys-spinner" /><span>Carregando indicadores...</span></div>
+      ) : (
+        <div>
+          <div className="ys-admin-metrics">
+            <div><span>Usuários cadastrados</span><strong>{admin.stats.users}</strong><Users size={18} /></div>
+            <div><span>Licenças ativas</span><strong>{admin.stats.activeLicenses}</strong><BadgeCheck size={18} /></div>
+            <div><span>Máquinas licenciadas</span><strong>{admin.stats.activeMachines}</strong><Laptop size={18} /></div>
+            <div><span>Vendas confirmadas</span><strong>{admin.stats.sales}</strong><CreditCard size={18} /></div>
+            <div><span>Faturamento no mês</span><strong>{formatBRL(admin.stats.monthRevenueCents)}</strong><ArrowDownRight size={18} /></div>
+            <div><span>Faturamento total</span><strong>{formatBRL(admin.stats.revenueCents)}</strong><Sparkles size={18} /></div>
+          </div>
+          <div className="ys-admin-table-section">
+            <div className="ys-section-heading">
+              <div><h2>Usuários</h2><span>{admin.users.length} contas</span></div>
+            </div>
+            <div className="ys-table-scroll">
+              <table className="table is-fullwidth ys-table">
+                <thead><tr><th>E-mail</th><th>Cadastro</th><th>Perfil</th></tr></thead>
+                <tbody>{admin.users.map((accountUser) => (
+                  <tr key={accountUser.id}>
+                    <td>{accountUser.email}</td>
+                    <td>{formatDate(accountUser.createdAt)}</td>
+                    <td>{accountUser.master ? "Master" : "Cliente"}</td>
+                  </tr>
+                ))}</tbody>
+              </table>
+            </div>
+          </div>
+          <div className="ys-admin-table-section">
+            <div className="ys-section-heading">
+              <div><h2>Licenças</h2><span>Últimas 500 compras</span></div>
+            </div>
+            <div className="ys-table-scroll">
+              <table className="table is-fullwidth ys-table">
+                <thead><tr><th>Cliente</th><th>Máquinas</th><th>Valor</th><th>Validade</th><th>Status</th></tr></thead>
+                <tbody>{admin.licenses.map((license) => (
+                  <tr key={license.id}>
+                    <td>{license.email}</td>
+                    <td>{license.machineCount}</td>
+                    <td>{formatBRL(license.amountCents)}</td>
+                    <td>{formatDate(license.expiresAt)}</td>
+                    <td><span className={`ys-status ${license.active ? "is-approved" : "is-rejected"}`}>{license.active ? "Ativa" : "Expirada"}</span></td>
+                  </tr>
+                ))}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function YsdeskClient() {
   const [user, setUser] = useState<DeskUser | null>(null);
   const [account, setAccount] = useState<AccountData | null>(null);
@@ -130,6 +164,10 @@ export default function YsdeskClient() {
   const [activationCode, setActivationCode] = useState<string | null>(null);
   const [payment, setPayment] = useState<PaymentData | null>(null);
   const [copied, setCopied] = useState(false);
+  const [showCreateLicenseModal, setShowCreateLicenseModal] = useState(false);
+  const [createLicenseUserId, setCreateLicenseUserId] = useState("");
+  const [createLicenseMachines, setCreateLicenseMachines] = useState(1);
+  const [createLicenseBusy, setCreateLicenseBusy] = useState(false);
 
   async function refreshAccount() {
     const result = await requestJson<{ user: DeskUser | null } & Partial<AccountData>>("/api/ysdesk/me");
@@ -191,7 +229,7 @@ export default function YsdeskClient() {
       });
       setPayment(result);
     } catch (error) {
-        console.log(error);
+      console.log(error);
       setMessage(error instanceof Error ? error.message : "Não foi possível criar o PIX.");
     } finally {
       setBusyPlan(null);
@@ -227,6 +265,31 @@ export default function YsdeskClient() {
       setMessage(error instanceof Error ? error.message : "Não foi possível acessar sua conta.");
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function createFreeLicense() {
+    if (!createLicenseUserId || createLicenseMachines < 1) return;
+    setCreateLicenseBusy(true);
+    setMessage("");
+    try {
+      await requestJson("/api/ysdesk/admin", {
+        method: "POST",
+        body: JSON.stringify({
+          userId: createLicenseUserId,
+          machineCount: createLicenseMachines,
+          amountCents: 0,
+        }),
+      });
+      setMessage("Licença gratuita criada com sucesso!");
+      setShowCreateLicenseModal(false);
+      setCreateLicenseUserId("");
+      setCreateLicenseMachines(1);
+      await loadAdmin();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Não foi possível criar a licença.");
+    } finally {
+      setCreateLicenseBusy(false);
     }
   }
 
@@ -350,29 +413,41 @@ export default function YsdeskClient() {
               <p className="ys-commercial-note">Precisa de um pacote personalizado? <a href="mailto:ysp.rael@gmail.com?subject=YSdesk%20-%20Plano%20comercial">Fale com nosso comercial</a>.</p>
             </>}
 
-            {activeView === "admin" && user.master && <>
-              <div className="ys-page-heading"><div><p className="ys-eyebrow">YS DESK · MASTER</p><h1>Painel de gestão</h1><p>Contas, licenças e vendas confirmadas.</p></div><button className="button ys-button ys-button-outline" type="button" onClick={() => void loadAdmin()}><RefreshCw size={16} /> Atualizar</button></div>
-              {!admin ? <div className="ys-empty-state"><span className="ys-spinner" /><span>Carregando indicadores...</span></div> : <>
-                <div className="ys-admin-metrics">
-                  <div><span>Usuários cadastrados</span><strong>{admin.stats.users}</strong><Users size={18} /></div>
-                  <div><span>Licenças ativas</span><strong>{admin.stats.activeLicenses}</strong><BadgeCheck size={18} /></div>
-                  <div><span>Máquinas licenciadas</span><strong>{admin.stats.activeMachines}</strong><Laptop size={18} /></div>
-                  <div><span>Vendas confirmadas</span><strong>{admin.stats.sales}</strong><CreditCard size={18} /></div>
-                  <div><span>Faturamento no mês</span><strong>{formatBRL(admin.stats.monthRevenueCents)}</strong><ArrowDownRight size={18} /></div>
-                  <div><span>Faturamento total</span><strong>{formatBRL(admin.stats.revenueCents)}</strong><Sparkles size={18} /></div>
-                </div>
-                <div className="ys-admin-table-section"><div className="ys-section-heading"><div><h2>Usuários</h2><span>{admin.users.length} contas</span></div></div>
-                  <div className="ys-table-scroll"><table className="table is-fullwidth ys-table"><thead><tr><th>E-mail</th><th>Cadastro</th><th>Perfil</th></tr></thead><tbody>{admin.users.map((accountUser) => <tr key={accountUser.id}><td>{accountUser.email}</td><td>{formatDate(accountUser.createdAt)}</td><td>{accountUser.master ? "Master" : "Cliente"}</td></tr>)}</tbody></table></div>
-                </div>
-                <div className="ys-admin-table-section"><div className="ys-section-heading"><div><h2>Licenças</h2><span>Últimas 500 compras</span></div></div>
-                  <div className="ys-table-scroll"><table className="table is-fullwidth ys-table"><thead><tr><th>Cliente</th><th>Máquinas</th><th>Valor</th><th>Validade</th><th>Status</th></tr></thead><tbody>{admin.licenses.map((license) => <tr key={license.id}><td>{license.email}</td><td>{license.machineCount}</td><td>{formatBRL(license.amountCents)}</td><td>{formatDate(license.expiresAt)}</td><td><span className={`ys-status ${license.active ? "is-approved" : "is-rejected"}`}>{license.active ? "Ativa" : "Expirada"}</span></td></tr>)}</tbody></table></div>
-                </div>
-              </>}
-            </>}
+            {activeView === "admin" && user.master && (
+              <AdminPanel admin={admin} onCreateLicense={() => setShowCreateLicenseModal(true)} onRefresh={loadAdmin} />
+            )}
 
             <footer className="ys-dashboard-footer">YSdesk <span>·</span> Licenças e dispositivos <a href="mailto:ysp.rael@gmail.com">Precisa de ajuda?</a></footer>
           </section>
         </div>
+
+        {showCreateLicenseModal && <div className="ys-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setShowCreateLicenseModal(false); }}>
+          <section className="ys-payment-modal" role="dialog" aria-modal="true" aria-labelledby="ys-create-license-title">
+            <button className="ys-modal-close" type="button" onClick={() => setShowCreateLicenseModal(false)} aria-label="Fechar"><X size={19} /></button>
+            <div className="ys-payment-icon"><BadgeCheck size={22} /></div>
+            <p className="ys-eyebrow">LICENÇA GRATUITA</p><h2 id="ys-create-license-title">Criar nova licença</h2>
+            <p className="ys-pix-instruction">Selecione o usuário e a quantidade de máquinas. A licença será criada sem custo.</p>
+            <div className="ys-form-group" style={{ marginTop: "1rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              <div>
+                <label className="label" htmlFor="ys-create-license-user">Usuário</label>
+                <div className="control"><select id="ys-create-license-user" className="input" value={createLicenseUserId} onChange={(e) => setCreateLicenseUserId(e.target.value)} required>
+                  <option value="">Selecione um usuário</option>
+                  {admin?.users.map((u) => <option key={u.id} value={u.id}>{u.email}</option>)}
+                </select></div>
+              </div>
+              <div>
+                <label className="label" htmlFor="ys-create-license-machines">Máquinas</label>
+                <div className="control"><input id="ys-create-license-machines" className="input" type="number" min={1} max={100} value={createLicenseMachines} onChange={(e) => setCreateLicenseMachines(Number(e.target.value))} required /></div>
+              </div>
+            </div>
+            <div className="ys-form-actions" style={{ marginTop: "1.5rem", display: "flex", gap: "0.75rem", justifyContent: "flex-end" }}>
+              <button className="button ys-button ys-button-outline" type="button" onClick={() => setShowCreateLicenseModal(false)}>Cancelar</button>
+              <button className="button ys-button" type="button" onClick={createFreeLicense} disabled={createLicenseBusy || !createLicenseUserId}>
+                {createLicenseBusy ? "Criando..." : "Criar licença gratuita"} <BadgeCheck size={16} />
+              </button>
+            </div>
+          </section>
+        </div>}
 
         {payment && <div className="ys-modal-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) setPayment(null); }}>
           <section className="ys-payment-modal" role="dialog" aria-modal="true" aria-labelledby="ys-payment-title">
@@ -434,7 +509,7 @@ export default function YsdeskClient() {
             <div className="ys-preview-machine"><span className="ys-preview-machine-icon"><Laptop size={18} /></span><span><strong>Estação principal</strong><small>Ativa agora</small></span><i /></div>
             <div className="ys-preview-machine"><span className="ys-preview-machine-icon ys-machine-alt"><Laptop size={18} /></span><span><strong>Notebook pessoal</strong><small>Ativa · há 2 dias</small></span><i /></div>
             <div className="ys-preview-license"><span><ShieldCheck size={17} /> Licença ativa</span><strong>até 18 jan, 2027</strong></div>
-                      <div className="ys-preview-license"><span><ShieldCheck size={17} /> Licença ativa</span><strong>3 meses ativos</strong></div>
+            <div className="ys-preview-license"><span><ShieldCheck size={17} /> Licença ativa</span><strong>3 meses ativos</strong></div>
           </div>
           <div className="ys-preview-float"><span><BadgeCheck size={18} /></span><div><strong>Licença protegida</strong><small>3 meses de acesso</small></div></div>
           <span className="ys-hero-index">01 <i /> 04</span>
@@ -476,8 +551,8 @@ export default function YsdeskClient() {
             <p className="ys-pix-instruction">Escaneie o QR Code no aplicativo do seu banco ou copie o código PIX.</p>
             {payment.pixCode && <button className="button ys-copy-pix" type="button" onClick={() => void copyPixCode()}>{copied ? <Check size={17} /> : <Clipboard size={17} />}{copied ? "Código copiado" : "Copiar código PIX"}</button>}
             {payment.ticketUrl && <a className="ys-ticket-link" href={payment.ticketUrl} target="_blank" rel="noreferrer"><Download size={15} /> Abrir pagamento no Mercado Pago</a>}
-              {payment.status === "needs_review" ? <p className="ys-payment-wait">Pagamento em análise pelo Mercado Pago.</p> : ["rejected", "cancelled", "error", "refunded", "expired", "charged_back"].includes(payment.status) ? <p className="ys-payment-failed">Este PIX não foi aprovado. Feche esta janela para escolher outro pacote.</p> : <div className="ys-payment-wait"><span className="ys-pulse" /> Aguardando confirmação do pagamento</div>}
-              <div className="ys-payment-status"><StatusLabel status={payment.status} /></div>
+            {payment.status === "needs_review" ? <p className="ys-payment-wait">Pagamento em análise pelo Mercado Pago.</p> : ["rejected", "cancelled", "error", "refunded", "expired", "charged_back"].includes(payment.status) ? <p className="ys-payment-failed">Este PIX não foi aprovado. Feche esta janela para escolher outro pacote.</p> : <div className="ys-payment-wait"><span className="ys-pulse" /> Aguardando confirmação do pagamento</div>}
+            <div className="ys-payment-status"><StatusLabel status={payment.status} /></div>
           </>}
           <p className="ys-payment-security"><ShieldCheck size={15} /> A licença é ativada após a confirmação do Mercado Pago.</p>
         </section>

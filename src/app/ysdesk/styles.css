@@ -41,6 +41,18 @@
   color: inherit;
 }
 
+.ysdesk-root strong {
+  color: var(--ys-ink);
+}
+
+.ysdesk-root input {
+  color: var(--ys-ink);
+  background: var(--ys-paper);
+  &::placeholder {
+    color: var(--ys-muted);
+  }
+}
+
 .ysdesk-root h1,
 .ysdesk-root h2,
 .ysdesk-root h3,
@@ -1259,6 +1271,7 @@
 .ys-admin-metrics > div > svg { position: absolute; top: 14px; right: 14px; color: #80a28b; }
 .ys-admin-table-section { margin-top: 20px; }
 .ys-admin-table-section .ys-section-heading { margin: 0 0 10px; }
+.ys-page-heading-actions { display: flex; gap: 8px; }
 .ys-table-scroll { overflow-x: auto; border: 1px solid var(--ys-line); border-radius: 4px; background: #fff; }
 .ys-table.table { min-width: 570px; margin: 0; background: #fff; font-size: 10px; }
 .ys-table.table thead th { padding: 10px 12px; border-color: #e7eee8; color: #738078; background: #f7faf7; font-size: 8px; letter-spacing: .45px; text-transform: uppercase; }

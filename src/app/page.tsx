@@ -69,7 +69,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div>@Ysh-rael - 2026 <code>V3.0.1</code></div>
+        <div>@Ysh-rael - 2026 <code title="Atualizado em 02/11/2026 17:12 -03:00">V3.2.0</code></div>
       </footer>
 
     </div>
